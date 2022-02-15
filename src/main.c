@@ -14,6 +14,7 @@ int main (void){
 	initTimer();
 	initDAC();
 	initADC();
+	initPinSelect();
 	initLEDs();
 	initButton();
 	PB_LCD_Init();
@@ -22,8 +23,13 @@ int main (void){
 	PB_LCD_Clear();
 	LED_Turn_On(4);
 	
-	// Read from ADC
+	// Later add this into while loop
 	waitForADCAndRead();
+	
 	// Output value to LCD
-	OutputValue();
+	while(1){
+		// Read from ADC
+		OutputValue();
+		waitInterval(1);
+	}
 }

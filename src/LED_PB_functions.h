@@ -5,7 +5,8 @@
 
 void initLEDs(void);
 void initButton(void);
-uint32_t ReadPushButton(void);
+void EXTI0_IRQHandler(void);
+uint32_t readPushButton(void);
 void LED_Turn_On(int colour);
 void LED_Turn_Off(int colour);
 

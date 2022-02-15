@@ -3,10 +3,14 @@
 
 #include "stm32f407xx.h"
 #include "PB_LCD_Drivers.h"
+#include "LED_PB_functions.h"
+#include "timer_functions.h"
 #include "multimeter_functions.h"
 
 // Int var for ADC conversions
 uint32_t static ADCconv;
+// Int var for read mode
+int static read_mode = 0;
 
 void initTimer(void){
 	// Enables clock for required registers in GPIOE
@@ -47,23 +51,64 @@ void initDAC(void){
 	GPIOA->MODER = (GPIOA->MODER & ~GPIO_MODER_MODER4_Msk) | (0x3 << GPIO_MODER_MODER4_Pos);
 }
 
+void initPinSelect(void){
+	// Enables clock for required pins in GPIOB
+	RCC->AHB1ENR = (RCC->AHB1ENR & ~RCC_AHB1ENR_GPIOBEN_Msk) | (0x1 << RCC_AHB1ENR_GPIOBEN_Pos);
+	// Set mode of GPIO pin B8 to GP output
+	GPIOB->MODER = (GPIOB->MODER & ~GPIO_MODER_MODER8_Msk) | (0x1 << GPIO_MODER_MODER8_Pos);
+}
+
 void waitForADCAndRead(void){
 	// Waits for the EOC flag to be triggered
-	while(!((ADC1->SR >> 1) & 1)){
-	}
+	//while(!((ADC1->SR >> 1) & 1)){
+	//}
 	// Store the value in the ADCs Data Register to a local var
 	ADCconv = ADC1->DR;
 }
 
-void OutputValue(){
+void OutputValue(void){
+	// Reset the LCD
+	PB_LCD_Clear();
 	// Write to first line
 	PB_LCD_GoToXY(0, 0);
-	// Write the property (voltage) to LCD
-	PB_LCD_WriteString("Voltage:", 0x8);
+	// Write the property to LCD
+	switch(read_mode){
+		case 0:
+			PB_LCD_WriteString("DC Voltage:", 0xB);
+			break;
+		case 1:
+			PB_LCD_WriteString("AC Voltage:", 0xB);
+			break;
+		case 2:
+			PB_LCD_WriteString("Current:", 0x8);
+			break;
+		case 3:
+			PB_LCD_WriteString("Resistance:", 0xB);
+			break;
+		default:
+			PB_LCD_WriteString("Problem:", 0x8);
+			break;
+	}
 	// Write to second line
 	PB_LCD_GoToXY(0, 1);
-	// Map the value of the ADC to the correct numbers
-	float mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
+	float mapped_value = 0;
+	switch(read_mode){
+		case 0:
+			// Map the value of the ADC to the correct numbers
+			mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
+			break;
+		case 1:
+			// AC current map
+			break;
+		case 2:
+			// AC current map
+			break;
+		case 3:
+			// AC current map
+			break;
+		default:
+			break;
+	}
 	// Allocate memory and define string var for the LCD value buffer
 	char* value = malloc(13*sizeof(char));
 	// Put the value of the ADC into the value buffer
@@ -72,9 +117,22 @@ void OutputValue(){
 	PB_LCD_WriteString(value, 0x12);
 	// Free the allocated memory
 	free(value);
-}
+} 
 
 // Map function relates one set of numbers to another set
 float map(float x, float in_min, float in_max, float out_min, float out_max) {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+void switchMode(void){
+	if(read_mode == 3){
+		read_mode = 0;
+	} else {
+		read_mode++;
+	}
+	//if(readPushButton()){
+	//	GPIOB->BSRR = (GPIOB->BSRR & GPIO_BSRR_BS8_Msk) | (0x1 << GPIO_BSRR_BS8_Pos);
+	//} else {
+	//	GPIOB->BSRR = (GPIOB->BSRR & GPIO_BSRR_BR8_Msk) | (0x1 << GPIO_BSRR_BR8_Pos);
+	//}
 }
