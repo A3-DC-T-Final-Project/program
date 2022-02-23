@@ -1,18 +1,30 @@
 #include "stm32f407xx.h"
 #include "timer_functions.h"
 
+#include "LED_PB_functions.h"
+
+
+#include <limits.h>
+
 // Global Variables
 // Int var for tick counter
-uint32_t static volatile ticks = 0;
+uint32_t ourTick = 0;
 
 void SysTick_Handler(void) {
-	ticks++;
+	ourTick++;
+	
+	/*if(ourTick == 1e6) {
+		LED_Turn_On(4);
+	} else {
+		LED_Turn_Off(4);
+	}*/
 }
 
 // Waits for some ticks 
 void waitInterval(uint32_t waitTime){
-	uint32_t whenStarted = ticks;
-	while (ticks - whenStarted < waitTime);
+	uint32_t whenStarted = ourTick;
+	do{__asm("");}
+	while ((ourTick - whenStarted) <= waitTime);
 }
 
 void initTimer(void){
@@ -33,5 +45,5 @@ void initTimer(void){
 }
 
 uint32_t getTicks(){
-	return ticks;
+	return ourTick;
 }

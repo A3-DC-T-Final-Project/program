@@ -1,6 +1,6 @@
 Dependencies for Project 'multimeter', Target 'Lab Arm Kit': (DO NOT MODIFY !)
 CompilerVersion: 6160000::V6.16::ARMCLANG
-F (.\main.c)(0x6216446F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/main.o -MD)
+F (.\main.c)(0x62166747)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/main.o -MD)
 I (RTE\_Lab_Arm_Kit\Pre_Include_Global.h)(0x6206800E)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x60356A44)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x60356A40)
@@ -16,7 +16,7 @@ I (PB_LCD_Drivers.h)(0x6203CE87)
 I (LED_PB_functions.h)(0x620A8174)
 I (multimeter_functions.h)(0x62137BF6)
 I (array-queue.h)(0x620BCCAB)
-I (timer_functions.h)(0x62139880)
+I (timer_functions.h)(0x62166747)
 F (.\PB_LCD_Drivers.c)(0x6203D95D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/pb_lcd_drivers.o -MD)
 I (PB_LCD_Drivers.h)(0x6203CE87)
 I (C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x61113140)
@@ -28,11 +28,12 @@ I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h)(0x60
 I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h)(0x60D44B52)
 I (C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x61113140)
 I (C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x61113140)
-F (.\LED_PB_functions.c)(0x62139ED5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/led_pb_functions.o -MD)
+F (.\LED_PB_functions.c)(0x621668E0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/led_pb_functions.o -MD)
 I (RTE\_Lab_Arm_Kit\Pre_Include_Global.h)(0x6206800E)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x60356A3A)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x60356A44)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x60356A40)
+I (c:\Keil_v5\ARM\ARMCLANG\include\limits.h)(0x60356A3A)
 I (C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x61113140)
 I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm4.h)(0x60D44B52)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x60356A40)
@@ -43,11 +44,12 @@ I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h)(0x60D44B5
 I (C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x61113140)
 I (C:\KEIL_V5\ARM\PACK\Keil\MDK-Middleware\7.13.0\Board\Board_LED.h)(0x5D147FDA)
 I (LED_PB_functions.h)(0x620A8174)
+I (PB_LCD_Drivers.h)(0x6203CE87)
 I (multimeter_functions.h)(0x62137BF6)
 I (array-queue.h)(0x620BCCAB)
-I (timer_functions.h)(0x62139880)
+I (timer_functions.h)(0x62166747)
 F (.\LED_PB_functions.h)(0x620A8174)()
-F (.\multimeter_functions.c)(0x62138558)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/multimeter_functions.o -MD)
+F (.\multimeter_functions.c)(0x621662CC)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/multimeter_functions.o -MD)
 I (RTE\_Lab_Arm_Kit\Pre_Include_Global.h)(0x6206800E)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x60356A44)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x60356A40)
@@ -61,11 +63,11 @@ I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h)(0x60D44B5
 I (C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x61113140)
 I (PB_LCD_Drivers.h)(0x6203CE87)
 I (LED_PB_functions.h)(0x620A8174)
-I (timer_functions.h)(0x62139880)
+I (timer_functions.h)(0x62166747)
 I (multimeter_functions.h)(0x62137BF6)
 I (array-queue.h)(0x620BCCAB)
 F (.\multimeter_functions.h)(0x62137BF6)()
-F (.\timer_functions.c)(0x62139883)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/timer_functions.o -MD)
+F (.\timer_functions.c)(0x6216629A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/timer_functions.o -MD)
 I (RTE\_Lab_Arm_Kit\Pre_Include_Global.h)(0x6206800E)
 I (C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f407xx.h)(0x61113140)
 I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\core_cm4.h)(0x60D44B52)
@@ -75,8 +77,10 @@ I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_compiler.h)(0x60
 I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\cmsis_armclang.h)(0x60D44B52)
 I (C:\KEIL_V5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include\mpu_armv7.h)(0x60D44B52)
 I (C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x61113140)
-I (timer_functions.h)(0x62139880)
-F (.\timer_functions.h)(0x62139880)()
+I (timer_functions.h)(0x62166747)
+I (LED_PB_functions.h)(0x620A8174)
+I (c:\Keil_v5\ARM\ARMCLANG\include\limits.h)(0x60356A3A)
+F (.\timer_functions.h)(0x62166747)()
 F (.\array-queue.c)(0x62137507)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O1 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I./RTE/Device/STM32F407VGTx-I./RTE/_Lab_Arm_Kit-IC:/KEIL_V5/ARM/PACK/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/KEIL_V5/ARM/PACK/Keil/MDK-Middleware/7.13.0/Board-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/KEIL_V5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F407xx -D_RTE_  -include "Pre_Include_Global.h"-o ./objects/array-queue.o -MD)
 I (RTE\_Lab_Arm_Kit\Pre_Include_Global.h)(0x6206800E)
 I (c:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x60356A44)

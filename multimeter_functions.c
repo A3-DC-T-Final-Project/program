@@ -82,10 +82,10 @@ void OutputValue(void){
 	}
 	// Write to second line
 	PB_LCD_GoToXY(0, 1);
-	float mapped_value = 0;
+	float mapped_value; //= 0;
 	// Array to store voltages for RMS
 	//Queue* AC_readings = qConstructor();
-	switch(read_mode){
+	/*switch(read_mode){
 		case 0:
 			waitForADCAndRead();
 			// Map the value of the ADC to the correct numbers
@@ -104,11 +104,11 @@ void OutputValue(void){
 			break;
 		default:
 			break;
-	}
+	}*/
 	// Allocate memory and define string var for the LCD value buffer
 	char* value = malloc(13*sizeof(char));
 	// Put the value of the ADC into the value buffer
-	snprintf(value, 13*sizeof(char), "%.5lf", (double) mapped_value);
+	snprintf(value, 13*sizeof(char), "%u", ourTick);
 	// Write value buffer to LCD
 	PB_LCD_WriteString(value, 0x12);
 	// Free the allocated memory

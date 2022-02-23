@@ -1,16 +1,17 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <limits.h>
 #include "stm32f407xx.h"
 #include "Board_LED.h"
 #include "LED_PB_functions.h"
+#include "PB_LCD_Drivers.h"
 #include "multimeter_functions.h"
 #include "timer_functions.h"
 
 // Counter for debouncing button
 static uint32_t debounce_counter = 0;
-static bool is_debouncing = false;
+int led_cond = 0;
 
 void initLEDs(void){
 	// Enables clock for required pins in GPIOD
@@ -47,23 +48,34 @@ void initButton(void){
 void EXTI0_IRQHandler(void){
 	// Clear pending interrupt on line 0
 	EXTI->PR = EXTI_PR_PR0;
-	if (!is_debouncing){
+	/*if (!is_debouncing){
 		switchMode();
 		debounce_counter = getTicks();
 		is_debouncing = true;
 	} else {
 		if ((getTicks() - debounce_counter) > (uint32_t) 1000){
 			is_debouncing = false;
+			LED_Turn_Off(4);
+		} else {
+		LED_Turn_On(4);
+		}
+	}*/
+	
+	if((ourTick - debounce_counter) > (100)) {
+		debounce_counter = ourTick;
+		if(led_cond == 0) {
+			LED_Turn_On(4);
+			led_cond = 1;
+		} else {
+			LED_Turn_Off(4);
+			led_cond = 0;
 		}
 	}
-	// POSSIBLE CONFLICT WITH SYS_TICK HANDLER
-	//  MAYBE PIN CONFLICT?
 }
 
 uint32_t readPushButton(void){
 	// Reads in the GPIOA IDR then isolates the last bit (push button state)
-	uint32_t LastBit = GPIOA->IDR & (1 << 1) -1;
-	return LastBit;
+	return (GPIOA->IDR & (1 << 1) -1);
 }
 
 void LED_Turn_On(int colour){

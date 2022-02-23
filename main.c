@@ -8,9 +8,13 @@
 #include "timer_functions.h"
 
 int main (void){
+	
+	ourTick = 0;
+	led_cond = 0;
+	
 	// Initialisation functions
 	SystemCoreClockUpdate();
-	SysTick_Config(SystemCoreClock/*/100*/);
+	SysTick_Config(SystemCoreClock/1000);
 	initTimer();
 	initDAC();
 	initADC();
@@ -21,17 +25,21 @@ int main (void){
 	
 	// Initial conditions
 	PB_LCD_Clear();
-	LED_Turn_On(4);
+	//LED_Turn_On(4);
 	
 	// Later add this into while loop
 	waitForADCAndRead();
 	
 	// Output value to LCD
 	while(1){
-		OutputValue();
-		if (readPushButton()){
+		waitForADCAndRead();
+		
+		//OutputValue();
+		
+		/*if (readPushButton()){
 			switchMode();
-		}
-		waitInterval(1);
+		}*/
+		
+		waitInterval(1000);
 	}
 }
