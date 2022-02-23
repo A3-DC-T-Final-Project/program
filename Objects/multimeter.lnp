@@ -1,0 +1,21 @@
+--cpu=Cortex-M4.fp.sp
+".\objects\main.o"
+".\objects\pb_lcd_drivers.o"
+".\objects\led_pb_functions.o"
+".\objects\multimeter_functions.o"
+".\objects\timer_functions.o"
+".\objects\array-queue.o"
+".\objects\led_f4discovery.o"
+".\objects\stm32f4xx_hal.o"
+".\objects\stm32f4xx_hal_cortex.o"
+".\objects\stm32f4xx_hal_gpio.o"
+".\objects\stm32f4xx_hal_pwr.o"
+".\objects\stm32f4xx_hal_pwr_ex.o"
+".\objects\stm32f4xx_hal_rcc.o"
+".\objects\stm32f4xx_hal_rcc_ex.o"
+".\objects\startup_stm32f407xx.o"
+".\objects\system_stm32f4xx.o"
+--strict --scatter ".\Objects\multimeter.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\multimeter.map" -o .\Objects\multimeter.axf

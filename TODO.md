@@ -1,0 +1,15 @@
+TODO::
+- Voltage scaling
+  - Keep a state variable for which range the voltage is on
+  - Then just use that variable in the map function to adjust the range
+- Change mapping function to work with some linear regression
+- Mode selection
+  - 1 digital pin needed to select for current or voltage
+    - Technically 2 pins but for now 1 pin will be grounded
+  - 2 digital pins needed for selecting voltage range
+  - 2 digital pins needed for selecting current range
+- AC voltage mode
+  - Either:
+    - 'Ghost select' for AC voltage - handling will be done through software
+	- Have a general voltage mode which measures both DC and AC
+  - Take measurement for a small amount of time eg. 0.5s then take rms value
