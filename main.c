@@ -8,10 +8,6 @@
 #include "timer_functions.h"
 
 int main (void){
-	
-	ourTick = 0;
-	led_cond = 0;
-	
 	// Initialisation functions
 	SystemCoreClockUpdate();
 	SysTick_Config(SystemCoreClock/1000);
@@ -25,7 +21,6 @@ int main (void){
 	
 	// Initial conditions
 	PB_LCD_Clear();
-	//LED_Turn_On(4);
 	
 	// Later add this into while loop
 	waitForADCAndRead();

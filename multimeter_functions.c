@@ -85,7 +85,7 @@ void OutputValue(void){
 	float mapped_value; //= 0;
 	// Array to store voltages for RMS
 	//Queue* AC_readings = qConstructor();
-	/*switch(read_mode){
+	switch(read_mode){
 		case 0:
 			waitForADCAndRead();
 			// Map the value of the ADC to the correct numbers
@@ -104,7 +104,8 @@ void OutputValue(void){
 			break;
 		default:
 			break;
-	}*/
+	}
+
 	// Allocate memory and define string var for the LCD value buffer
 	char* value = malloc(13*sizeof(char));
 	// Put the value of the ADC into the value buffer

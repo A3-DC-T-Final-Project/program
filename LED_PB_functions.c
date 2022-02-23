@@ -11,7 +11,6 @@
 
 // Counter for debouncing button
 static uint32_t debounce_counter = 0;
-int led_cond = 0;
 
 void initLEDs(void){
 	// Enables clock for required pins in GPIOD
@@ -48,28 +47,11 @@ void initButton(void){
 void EXTI0_IRQHandler(void){
 	// Clear pending interrupt on line 0
 	EXTI->PR = EXTI_PR_PR0;
-	/*if (!is_debouncing){
-		switchMode();
-		debounce_counter = getTicks();
-		is_debouncing = true;
-	} else {
-		if ((getTicks() - debounce_counter) > (uint32_t) 1000){
-			is_debouncing = false;
-			LED_Turn_Off(4);
-		} else {
-		LED_Turn_On(4);
-		}
-	}*/
 	
 	if((ourTick - debounce_counter) > (100)) {
 		debounce_counter = ourTick;
-		if(led_cond == 0) {
-			LED_Turn_On(4);
-			led_cond = 1;
-		} else {
-			LED_Turn_Off(4);
-			led_cond = 0;
-		}
+		
+		// TODO: Switch mode here
 	}
 }
 

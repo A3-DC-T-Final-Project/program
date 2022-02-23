@@ -7,8 +7,9 @@ void SysTick_Handler(void);
 void waitInterval(uint32_t waitTime);
 void initTimer(void);
 
+// Variable used to keep count of counter ticks
 extern uint32_t ourTick;
-extern int led_cond;
+
 uint32_t getTicks(void);
 
 #endif

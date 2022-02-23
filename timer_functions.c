@@ -3,31 +3,32 @@
 
 #include "LED_PB_functions.h"
 
-
-#include <limits.h>
-
-// Global Variables
-// Int var for tick counter
-uint32_t ourTick = 0;
+uint32_t ourTick;
 
 void SysTick_Handler(void) {
+	/* Unsigned integers roll over to 0
+	 * for any operation that would cause
+	 * "overflow" on signed integers.
+	 */
 	ourTick++;
-	
-	/*if(ourTick == 1e6) {
-		LED_Turn_On(4);
-	} else {
-		LED_Turn_Off(4);
-	}*/
 }
 
 // Waits for some ticks 
 void waitInterval(uint32_t waitTime){
 	uint32_t whenStarted = ourTick;
+	
+	/* Empty assembly instruction so that the
+	 * empty while loop does not get remove at
+	 * compile time due to /optimisation/.
+	 */
 	do{__asm("");}
 	while ((ourTick - whenStarted) <= waitTime);
 }
 
 void initTimer(void){
+	// Initialise ourTick to 0
+	ourTick = 0;
+	
 	// Enables clock for required registers in GPIOE
 	RCC->AHB1ENR = (RCC->AHB1ENR & ~RCC_AHB1ENR_GPIOEEN_Msk) | (0x1 << RCC_AHB1ENR_GPIOEEN_Pos);
 	// Sets the MODE of E7 alternate function mode 0b10
