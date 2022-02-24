@@ -3,6 +3,8 @@
 #ifndef LED_PB_functions_FILE
 #define LED_PB_functions_FILE
 
+#define DEBOUNCE_TIME 200
+
 void initLEDs(void);
 void initButton(void);
 void EXTI0_IRQHandler(void);

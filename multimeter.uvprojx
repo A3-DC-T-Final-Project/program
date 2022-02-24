@@ -433,6 +433,16 @@
               <FileType>5</FileType>
               <FilePath>.\array-queue.h</FilePath>
             </File>
+            <File>
+              <FileName>digital_functions.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\digital_functions.c</FilePath>
+            </File>
+            <File>
+              <FileName>digital_functions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\digital_functions.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -6,6 +6,7 @@
 #include "LED_PB_functions.h"
 #include "multimeter_functions.h"
 #include "timer_functions.h"
+#include "digital_functions.h"
 
 int main (void){
 	// Initialisation functions
@@ -18,6 +19,7 @@ int main (void){
 	initLEDs();
 	initButton();
 	PB_LCD_Init();
+	initDigitalPins();
 	
 	// Initial conditions
 	PB_LCD_Clear();
@@ -27,14 +29,12 @@ int main (void){
 	
 	// Output value to LCD
 	while(1){
-		waitForADCAndRead();
-		
-		//OutputValue();
+		OutputValue();
 		
 		/*if (readPushButton()){
 			switchMode();
 		}*/
 		
-		waitInterval(1000);
+		waitInterval(DEBOUNCE_TIME);
 	}
 }

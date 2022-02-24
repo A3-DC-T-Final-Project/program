@@ -6,16 +6,17 @@
 #include "LED_PB_functions.h"
 #include "timer_functions.h"
 #include "multimeter_functions.h"
-#include "array-queue.h"
+#include "digital_functions.h"
 
 // Int var for ADC conversions
 uint32_t ADCconv;
 // Int var for read mode
-static int read_mode = 0;
+int read_mode;
 
 void initADC(void){
-	// Initialise ADConv variable
+	// Initialise ADConv, read_mode variable
 	ADCconv = 0;
+	read_mode = 0;
 	
 	// Enables clock for required registers in GPIOC
 	RCC->AHB1ENR = (RCC->AHB1ENR & ~0x0000004ul) | 0x00000004;
@@ -65,6 +66,10 @@ void waitForADCAndRead(void){
 }
 
 void OutputValue(void){
+	
+	// Update ADC value
+	waitForADCAndRead();
+
 	// Reset the LCD
 	PB_LCD_Clear();
 	// Write to first line
@@ -89,14 +94,13 @@ void OutputValue(void){
 	}
 	// Write to second line
 	PB_LCD_GoToXY(0, 1);
-	float mapped_value; //= 0;
+	float mapped_value = 0;
 	// Array to store voltages for RMS
 	//Queue* AC_readings = qConstructor();
 	switch(read_mode){
 		case 0:
-			waitForADCAndRead();
 			// Map the value of the ADC to the correct numbers
-			mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
+			//mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
 			break;
 		case 1:
 			// AC voltage map
@@ -114,9 +118,10 @@ void OutputValue(void){
 	}
 
 	// Allocate memory and define string var for the LCD value buffer
+	mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
 	char* value = malloc(13*sizeof(char));
 	// Put the value of the ADC into the value buffer
-	snprintf(value, 13*sizeof(char), "%u", ourTick);
+	snprintf(value, 13*sizeof(char), "%.5f", mapped_value);
 	// Write value buffer to LCD
 	
 	// TODO: That is 18 not 12
@@ -141,14 +146,24 @@ float map(float x, float in_min, float in_max, float out_min, float out_max) {
 }
 
 void switchMode(void){
-	if(read_mode == 3){
-		read_mode = 0;
-	} else {
-		read_mode++;
+	read_mode++;
+	if(read_mode == (R_MODE + 1)){
+		read_mode = DC_MODE;
 	}
-	//if(readPushButton()){
-	//	GPIOB->BSRR = (GPIOB->BSRR & GPIO_BSRR_BS8_Msk) | (0x1 << GPIO_BSRR_BS8_Pos);
-	//} else {
-	//	GPIOB->BSRR = (GPIOB->BSRR & GPIO_BSRR_BR8_Msk) | (0x1 << GPIO_BSRR_BR8_Pos);
-	//}
+	
+	// TODO: Hard-wire to ground
+	setLow(GPIOB, 7);
+
+	switch(read_mode) {
+		case R_MODE:
+		case AC_MODE:
+		case DC_MODE:
+			setLow(GPIOB, 5);
+			break;
+		case I_MODE:
+			setHigh(GPIOB, 5);
+			break;
+		default:
+			break;
+	}
 }
