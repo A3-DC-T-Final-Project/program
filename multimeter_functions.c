@@ -9,11 +9,14 @@
 #include "array-queue.h"
 
 // Int var for ADC conversions
-static uint32_t ADCconv;
+uint32_t ADCconv;
 // Int var for read mode
 static int read_mode = 0;
 
 void initADC(void){
+	// Initialise ADConv variable
+	ADCconv = 0;
+	
 	// Enables clock for required registers in GPIOC
 	RCC->AHB1ENR = (RCC->AHB1ENR & ~0x0000004ul) | 0x00000004;
 	// Sets the MODE to analogue input/output (0b11)
@@ -32,7 +35,7 @@ void initADC(void){
 	// Enables overrun detection
 	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_EOCS_Msk) | (0x1 << ADC_CR2_EOCS_Pos);
 	// Starts conversion for regular channels
-	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_SWSTART_Msk) | (0x1 << ADC_CR2_SWSTART_Pos);
+	//ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_SWSTART_Msk) | (0x1 << ADC_CR2_SWSTART_Pos);
 }
 
 void initDAC(void){
@@ -50,9 +53,13 @@ void initPinSelect(void){
 }
 
 void waitForADCAndRead(void){
+	// Starts conversion for regular channels
+	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_SWSTART_Msk) | (0x1 << ADC_CR2_SWSTART_Pos);
 	// Waits for the EOC flag to be triggered
-	//while(!((ADC1->SR >> 1) & 1)){
-	//}
+	do {
+		__asm("");
+	} while(!((ADC1->SR >> 1) & 1));
+	
 	// Store the value in the ADCs Data Register to a local var
 	ADCconv = ADC1->DR;
 }
@@ -111,6 +118,8 @@ void OutputValue(void){
 	// Put the value of the ADC into the value buffer
 	snprintf(value, 13*sizeof(char), "%u", ourTick);
 	// Write value buffer to LCD
+	
+	// TODO: That is 18 not 12
 	PB_LCD_WriteString(value, 0x12);
 	// Free the allocated memory
 	free(value);

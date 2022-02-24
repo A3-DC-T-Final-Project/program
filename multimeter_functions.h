@@ -13,4 +13,6 @@ void performFunction(void);
 void ACVoltage(Queue* readings);
 void switchMode(void);
 
+extern uint32_t ADCconv;
+
 #endif

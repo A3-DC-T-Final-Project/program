@@ -52,6 +52,15 @@ void EXTI0_IRQHandler(void){
 		debounce_counter = ourTick;
 		
 		// TODO: Switch mode here
+		waitForADCAndRead();
+		PB_LCD_Clear();
+		PB_LCD_GoToXY(0, 0);
+		PB_LCD_WriteString("ADC value:", 0xA);
+		char * print = malloc(13 * sizeof(char));
+		snprintf(print, 13*sizeof(char), "%u", ADCconv);
+		PB_LCD_GoToXY(0, 1);
+		PB_LCD_WriteString(print, 0xC);
+		
 	}
 }
 
