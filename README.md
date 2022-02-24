@@ -5,6 +5,5 @@ Project code for multimeter
 - For external reference a list of pins currently in use by the board
   - PD12-15
   - PA4
-  - PE7
   - PC4
   - PA0
