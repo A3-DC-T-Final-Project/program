@@ -424,16 +424,6 @@
               <FilePath>.\timer_functions.h</FilePath>
             </File>
             <File>
-              <FileName>array-queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\array-queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>array-queue.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\array-queue.h</FilePath>
-            </File>
-            <File>
               <FileName>digital_functions.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\digital_functions.c</FilePath>
@@ -442,6 +432,16 @@
               <FileName>digital_functions.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\digital_functions.h</FilePath>
+            </File>
+            <File>
+              <FileName>math_functions.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\math_functions.c</FilePath>
+            </File>
+            <File>
+              <FileName>math_functions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\math_functions.h</FilePath>
             </File>
           </Files>
         </Group>

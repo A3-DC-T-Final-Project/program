@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "stm32f407xx.h"
 #include "PB_LCD_Drivers.h"
@@ -7,7 +8,7 @@
 #include "timer_functions.h"
 #include "multimeter_functions.h"
 #include "digital_functions.h"
-#include "array-queue.h"
+#include "math_functions.h"
 
 // Int var for ADC conversions
 uint32_t ADCconv;
@@ -67,7 +68,6 @@ void waitForADCAndRead(void){
 }
 
 void OutputValue(void){
-	
 	// Update ADC value
 	waitForADCAndRead();
 
@@ -95,18 +95,21 @@ void OutputValue(void){
 	}
 	// Write to second line
 	PB_LCD_GoToXY(0, 1);
+	// Compile time variables
+	float total;
 	float mapped_value = 0;
-	// Array to store voltages for RMS
-	//Queue* AC_readings = qConstructor();
+	
+	// Switch to write output
 	switch(read_mode){
 		case 0:
 			// Map the value of the ADC to the correct numbers
-			mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
+		  total = DCVoltage();
+			mapped_value = map(total, 0, 4095, 0, 3);
 			break;
 		case 1:
 			// AC voltage map
-			mapped_value = (float) TIM1->CNT;
-			//ACVoltage(AC_readings);
+			total = ACVoltage();
+			mapped_value = map(total, 0, 4095, 0, 3);
 			break;
 		case 2:
 			// Current map
@@ -121,7 +124,7 @@ void OutputValue(void){
 	// Allocate memory and define string var for the LCD value buffer
 	char* value = malloc(13*sizeof(char));
 	// Put the value of the ADC into the value buffer
-	snprintf(value, 13*sizeof(char), "%.5f", mapped_value);
+	snprintf(value, 13*sizeof(char), "%.3f", mapped_value);
 	// Write value buffer to LCD
 	
 	// TODO: That is 18 not 12
@@ -130,19 +133,30 @@ void OutputValue(void){
 	free(value);
 } 
 
-void ACVoltage(Queue* readings){
-	qAdd(readings, ADCconv);
-	// If length = 10 dequeue
-	// append new value
-	// Collect squares of all values in a var
-	// mean values (/10)
-	// sqrt values (rms)
-	// or something like that
+float ACVoltage(){
+	double squares_total = 0;
+	int i;
+	for(i=0; i<1000; i++){
+		waitForADCAndRead();
+		squares_total += pow(ADCconv, 2);
+	}
+
+	float rms_total;
+	rms_total = RMSAverage(squares_total, 1000);
+	return rms_total;
 }
 
-// Map function relates one set of numbers to another set
-float map(float x, float in_min, float in_max, float out_min, float out_max) {
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+float DCVoltage(){
+	double total = 0;
+	int i;
+	for(i=0; i<1000; i++){
+		waitForADCAndRead();
+		total += ADCconv;
+	}
+
+	float mean_total;
+	mean_total = MeanAverage(total, 1000);
+	return mean_total;
 }
 
 void switchMode(void){

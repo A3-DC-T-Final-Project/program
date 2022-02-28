@@ -15,8 +15,9 @@ void waitForADCAndRead(void);
 void OutputValue(void);
 float map(float x, float in_min, float in_max, float out_min, float out_max);
 void performFunction(void);
-void ACVoltage(Queue* readings);
+float ACVoltage(void);
 void switchMode(void);
+float DCVoltage(void);
 
 extern uint32_t ADCconv;
 extern int read_mode;

@@ -327,8 +327,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\array-queue.c</PathWithFileName>
-      <FilenameWithoutPath>array-queue.c</FilenameWithoutPath>
+      <PathWithFileName>.\digital_functions.c</PathWithFileName>
+      <FilenameWithoutPath>digital_functions.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -339,8 +339,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\array-queue.h</PathWithFileName>
-      <FilenameWithoutPath>array-queue.h</FilenameWithoutPath>
+      <PathWithFileName>.\digital_functions.h</PathWithFileName>
+      <FilenameWithoutPath>digital_functions.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -351,8 +351,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\digital_functions.c</PathWithFileName>
-      <FilenameWithoutPath>digital_functions.c</FilenameWithoutPath>
+      <PathWithFileName>.\math_functions.c</PathWithFileName>
+      <FilenameWithoutPath>math_functions.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -363,8 +363,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\digital_functions.h</PathWithFileName>
-      <FilenameWithoutPath>digital_functions.h</FilenameWithoutPath>
+      <PathWithFileName>.\math_functions.h</PathWithFileName>
+      <FilenameWithoutPath>math_functions.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
