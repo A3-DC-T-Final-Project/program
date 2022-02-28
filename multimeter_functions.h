@@ -3,7 +3,6 @@
 #ifndef multimeter_functions_FILE
 #define multimeter_functions_FILE
 
-
 #define DC_MODE 0
 #define AC_MODE 1
 #define I_MODE 2

@@ -1,6 +1,5 @@
 #include "stm32f407xx.h"
 #include "timer_functions.h"
-
 #include "LED_PB_functions.h"
 
 uint32_t ourTick;

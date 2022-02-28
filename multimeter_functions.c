@@ -7,6 +7,7 @@
 #include "timer_functions.h"
 #include "multimeter_functions.h"
 #include "digital_functions.h"
+#include "array-queue.h"
 
 // Int var for ADC conversions
 uint32_t ADCconv;
@@ -100,7 +101,7 @@ void OutputValue(void){
 	switch(read_mode){
 		case 0:
 			// Map the value of the ADC to the correct numbers
-			//mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
+			mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
 			break;
 		case 1:
 			// AC voltage map
@@ -118,7 +119,6 @@ void OutputValue(void){
 	}
 
 	// Allocate memory and define string var for the LCD value buffer
-	mapped_value = map((float) ADCconv, 0, 4095, 0, 3);
 	char* value = malloc(13*sizeof(char));
 	// Put the value of the ADC into the value buffer
 	snprintf(value, 13*sizeof(char), "%.5f", mapped_value);

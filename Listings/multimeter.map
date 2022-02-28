@@ -1005,7 +1005,7 @@ Removing Unused input sections from the image.
     Removing stm32f4xx_hal_cortex.o(.text.HAL_SYSTICK_Callback), (2 bytes).
     Removing stm32f4xx_hal_cortex.o(.ARM.exidx.text.HAL_SYSTICK_Callback), (8 bytes).
     Removing stm32f4xx_hal_gpio.o(.text), (0 bytes).
-    Removing stm32f4xx_hal_gpio.o(.text.HAL_GPIO_Init), (410 bytes).
+    Removing stm32f4xx_hal_gpio.o(.text.HAL_GPIO_Init), (406 bytes).
     Removing stm32f4xx_hal_gpio.o(.ARM.exidx.text.HAL_GPIO_Init), (8 bytes).
     Removing stm32f4xx_hal_gpio.o(.text.HAL_GPIO_DeInit), (262 bytes).
     Removing stm32f4xx_hal_gpio.o(.ARM.exidx.text.HAL_GPIO_DeInit), (8 bytes).
@@ -1013,7 +1013,7 @@ Removing Unused input sections from the image.
     Removing stm32f4xx_hal_gpio.o(.ARM.exidx.text.HAL_GPIO_ReadPin), (8 bytes).
     Removing stm32f4xx_hal_gpio.o(.text.HAL_GPIO_WritePin), (10 bytes).
     Removing stm32f4xx_hal_gpio.o(.ARM.exidx.text.HAL_GPIO_WritePin), (8 bytes).
-    Removing stm32f4xx_hal_gpio.o(.text.HAL_GPIO_TogglePin), (14 bytes).
+    Removing stm32f4xx_hal_gpio.o(.text.HAL_GPIO_TogglePin), (16 bytes).
     Removing stm32f4xx_hal_gpio.o(.ARM.exidx.text.HAL_GPIO_TogglePin), (8 bytes).
     Removing stm32f4xx_hal_gpio.o(.text.HAL_GPIO_LockPin), (40 bytes).
     Removing stm32f4xx_hal_gpio.o(.ARM.exidx.text.HAL_GPIO_LockPin), (8 bytes).
@@ -1024,9 +1024,9 @@ Removing Unused input sections from the image.
     Removing stm32f4xx_hal_pwr.o(.text), (0 bytes).
     Removing stm32f4xx_hal_pwr.o(.text.HAL_PWR_DeInit), (26 bytes).
     Removing stm32f4xx_hal_pwr.o(.ARM.exidx.text.HAL_PWR_DeInit), (8 bytes).
-    Removing stm32f4xx_hal_pwr.o(.text.HAL_PWR_EnableBkUpAccess), (12 bytes).
+    Removing stm32f4xx_hal_pwr.o(.text.HAL_PWR_EnableBkUpAccess), (30 bytes).
     Removing stm32f4xx_hal_pwr.o(.ARM.exidx.text.HAL_PWR_EnableBkUpAccess), (8 bytes).
-    Removing stm32f4xx_hal_pwr.o(.text.HAL_PWR_DisableBkUpAccess), (12 bytes).
+    Removing stm32f4xx_hal_pwr.o(.text.HAL_PWR_DisableBkUpAccess), (30 bytes).
     Removing stm32f4xx_hal_pwr.o(.ARM.exidx.text.HAL_PWR_DisableBkUpAccess), (8 bytes).
     Removing stm32f4xx_hal_pwr.o(.text.HAL_PWR_ConfigPVD), (128 bytes).
     Removing stm32f4xx_hal_pwr.o(.ARM.exidx.text.HAL_PWR_ConfigPVD), (8 bytes).
@@ -1072,7 +1072,7 @@ Removing Unused input sections from the image.
     Removing stm32f4xx_hal_rcc.o(.text), (0 bytes).
     Removing stm32f4xx_hal_rcc.o(.text.HAL_RCC_DeInit), (4 bytes).
     Removing stm32f4xx_hal_rcc.o(.ARM.exidx.text.HAL_RCC_DeInit), (8 bytes).
-    Removing stm32f4xx_hal_rcc.o(.text.HAL_RCC_OscConfig), (820 bytes).
+    Removing stm32f4xx_hal_rcc.o(.text.HAL_RCC_OscConfig), (840 bytes).
     Removing stm32f4xx_hal_rcc.o(.ARM.exidx.text.HAL_RCC_OscConfig), (8 bytes).
     Removing stm32f4xx_hal_rcc.o(.text.HAL_RCC_ClockConfig), (352 bytes).
     Removing stm32f4xx_hal_rcc.o(.ARM.exidx.text.HAL_RCC_ClockConfig), (8 bytes).
@@ -1116,7 +1116,7 @@ Removing Unused input sections from the image.
     Removing system_stm32f4xx.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
     Removing system_stm32f4xx.o(.rodata.APBPrescTable), (8 bytes).
 
-308 unused section(s) (total 7517 bytes) removed from the image.
+308 unused section(s) (total 7571 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1397,72 +1397,72 @@ Image Symbol Table
     .text                                    0x08000d42   Section        0  sys_wrch.o(.text)
     [Anonymous Symbol]                       0x08000d50   Section        0  led_pb_functions.o(.text.EXTI0_IRQHandler)
     [Anonymous Symbol]                       0x08000d84   Section        0  multimeter_functions.o(.text.OutputValue)
-    [Anonymous Symbol]                       0x08000e90   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Clear)
-    [Anonymous Symbol]                       0x08000ea8   Section        0  pb_lcd_drivers.o(.text.PB_LCD_GoToXY)
-    [Anonymous Symbol]                       0x08000ee0   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Init)
-    [Anonymous Symbol]                       0x08000fe4   Section        0  pb_lcd_drivers.o(.text.PB_LCD_IsBusy)
-    [Anonymous Symbol]                       0x0800106c   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Microdelay)
-    [Anonymous Symbol]                       0x080010b8   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Set_As_Input)
-    [Anonymous Symbol]                       0x080010dc   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Set_As_Output)
-    [Anonymous Symbol]                       0x08001120   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Write)
-    [Anonymous Symbol]                       0x0800118c   Section        0  pb_lcd_drivers.o(.text.PB_LCD_WriteString)
-    SysTick_Config                           0x080011c1   Thumb Code    36  main.o(.text.SysTick_Config)
-    [Anonymous Symbol]                       0x080011c0   Section        0  main.o(.text.SysTick_Config)
-    [Anonymous Symbol]                       0x080011e4   Section        0  timer_functions.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x080011f4   Section        0  system_stm32f4xx.o(.text.SystemCoreClockUpdate)
-    [Anonymous Symbol]                       0x08001274   Section        0  system_stm32f4xx.o(.text.SystemInit)
-    __NVIC_EnableIRQ                         0x08001289   Thumb Code    14  led_pb_functions.o(.text.__NVIC_EnableIRQ)
-    [Anonymous Symbol]                       0x08001288   Section        0  led_pb_functions.o(.text.__NVIC_EnableIRQ)
-    __NVIC_SetPriority                       0x08001299   Thumb Code    14  main.o(.text.__NVIC_SetPriority)
-    [Anonymous Symbol]                       0x08001298   Section        0  main.o(.text.__NVIC_SetPriority)
-    __NVIC_SetPriority                       0x080012a9   Thumb Code    14  led_pb_functions.o(.text.__NVIC_SetPriority)
-    [Anonymous Symbol]                       0x080012a8   Section        0  led_pb_functions.o(.text.__NVIC_SetPriority)
-    [Anonymous Symbol]                       0x080012b8   Section        0  multimeter_functions.o(.text.initADC)
-    [Anonymous Symbol]                       0x08001328   Section        0  led_pb_functions.o(.text.initButton)
-    [Anonymous Symbol]                       0x0800137c   Section        0  multimeter_functions.o(.text.initDAC)
-    [Anonymous Symbol]                       0x0800139c   Section        0  digital_functions.o(.text.initDigitalPins)
-    [Anonymous Symbol]                       0x080013f8   Section        0  led_pb_functions.o(.text.initLEDs)
-    [Anonymous Symbol]                       0x0800141c   Section        0  multimeter_functions.o(.text.initPinSelect)
-    [Anonymous Symbol]                       0x08001440   Section        0  timer_functions.o(.text.initTimer)
-    [Anonymous Symbol]                       0x08001498   Section        0  main.o(.text.main)
-    [Anonymous Symbol]                       0x080014ec   Section        0  multimeter_functions.o(.text.map)
-    [Anonymous Symbol]                       0x08001508   Section        0  digital_functions.o(.text.setHigh)
-    [Anonymous Symbol]                       0x08001518   Section        0  digital_functions.o(.text.setLow)
-    [Anonymous Symbol]                       0x08001528   Section        0  multimeter_functions.o(.text.switchMode)
-    [Anonymous Symbol]                       0x08001570   Section        0  multimeter_functions.o(.text.waitForADCAndRead)
-    [Anonymous Symbol]                       0x08001598   Section        0  timer_functions.o(.text.waitInterval)
-    CL$$btod_d2e                             0x080015ae   Section       62  btod.o(CL$$btod_d2e)
-    CL$$btod_d2e_denorm_low                  0x080015ec   Section       70  btod.o(CL$$btod_d2e_denorm_low)
-    CL$$btod_d2e_norm_op1                    0x08001632   Section       96  btod.o(CL$$btod_d2e_norm_op1)
-    CL$$btod_div_common                      0x08001694   Section      824  btod.o(CL$$btod_div_common)
-    CL$$btod_e2e                             0x080019cc   Section      220  btod.o(CL$$btod_e2e)
-    CL$$btod_ediv                            0x08001aa8   Section       42  btod.o(CL$$btod_ediv)
-    CL$$btod_emul                            0x08001ad2   Section       42  btod.o(CL$$btod_emul)
-    CL$$btod_mult_common                     0x08001afc   Section      580  btod.o(CL$$btod_mult_common)
-    i.__ARM_fpclassify                       0x08001d40   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    i._is_digit                              0x08001d70   Section        0  __printf_wp.o(i._is_digit)
-    locale$$code                             0x08001d80   Section       44  lc_numeric_c.o(locale$$code)
-    $v0                                      0x08001dac   Number         0  dretinf.o(x$fpl$dretinf)
-    x$fpl$dretinf                            0x08001dac   Section       12  dretinf.o(x$fpl$dretinf)
-    $v0                                      0x08001db8   Number         0  f2d.o(x$fpl$f2d)
-    x$fpl$f2d                                0x08001db8   Section       86  f2d.o(x$fpl$f2d)
-    $v0                                      0x08001e0e   Number         0  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fnaninf                            0x08001e0e   Section      140  fnaninf.o(x$fpl$fnaninf)
-    $v0                                      0x08001e9a   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x08001e9a   Section       26  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x08001eb4   Number         0  printf1.o(x$fpl$printf1)
-    x$fpl$printf1                            0x08001eb4   Section        4  printf1.o(x$fpl$printf1)
-    tenpwrs_x                                0x08001eb8   Data          60  bigflt0.o(.constdata)
-    .constdata                               0x08001eb8   Section      148  bigflt0.o(.constdata)
-    x$fpl$usenofp                            0x08001eb8   Section        0  usenofp.o(x$fpl$usenofp)
-    tenpwrs_i                                0x08001ef4   Data          64  bigflt0.o(.constdata)
-    locale$$data                             0x08001f7c   Section       28  lc_numeric_c.o(locale$$data)
-    __lcnum_c_name                           0x08001f80   Data           2  lc_numeric_c.o(locale$$data)
-    __lcnum_c_start                          0x08001f88   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_point                          0x08001f94   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_thousands                      0x08001f96   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_grouping                       0x08001f97   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_end                            0x08001f98   Data           0  lc_numeric_c.o(locale$$data)
+    [Anonymous Symbol]                       0x08000ea0   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Clear)
+    [Anonymous Symbol]                       0x08000eb8   Section        0  pb_lcd_drivers.o(.text.PB_LCD_GoToXY)
+    [Anonymous Symbol]                       0x08000ef0   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Init)
+    [Anonymous Symbol]                       0x08000ff4   Section        0  pb_lcd_drivers.o(.text.PB_LCD_IsBusy)
+    [Anonymous Symbol]                       0x0800107c   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Microdelay)
+    [Anonymous Symbol]                       0x080010c8   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Set_As_Input)
+    [Anonymous Symbol]                       0x080010ec   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Set_As_Output)
+    [Anonymous Symbol]                       0x08001130   Section        0  pb_lcd_drivers.o(.text.PB_LCD_Write)
+    [Anonymous Symbol]                       0x0800119c   Section        0  pb_lcd_drivers.o(.text.PB_LCD_WriteString)
+    SysTick_Config                           0x080011d1   Thumb Code    36  main.o(.text.SysTick_Config)
+    [Anonymous Symbol]                       0x080011d0   Section        0  main.o(.text.SysTick_Config)
+    [Anonymous Symbol]                       0x080011f4   Section        0  timer_functions.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x08001204   Section        0  system_stm32f4xx.o(.text.SystemCoreClockUpdate)
+    [Anonymous Symbol]                       0x08001284   Section        0  system_stm32f4xx.o(.text.SystemInit)
+    __NVIC_EnableIRQ                         0x08001299   Thumb Code    14  led_pb_functions.o(.text.__NVIC_EnableIRQ)
+    [Anonymous Symbol]                       0x08001298   Section        0  led_pb_functions.o(.text.__NVIC_EnableIRQ)
+    __NVIC_SetPriority                       0x080012a9   Thumb Code    14  main.o(.text.__NVIC_SetPriority)
+    [Anonymous Symbol]                       0x080012a8   Section        0  main.o(.text.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x080012b9   Thumb Code    14  led_pb_functions.o(.text.__NVIC_SetPriority)
+    [Anonymous Symbol]                       0x080012b8   Section        0  led_pb_functions.o(.text.__NVIC_SetPriority)
+    [Anonymous Symbol]                       0x080012c8   Section        0  multimeter_functions.o(.text.initADC)
+    [Anonymous Symbol]                       0x08001338   Section        0  led_pb_functions.o(.text.initButton)
+    [Anonymous Symbol]                       0x0800138c   Section        0  multimeter_functions.o(.text.initDAC)
+    [Anonymous Symbol]                       0x080013ac   Section        0  digital_functions.o(.text.initDigitalPins)
+    [Anonymous Symbol]                       0x08001408   Section        0  led_pb_functions.o(.text.initLEDs)
+    [Anonymous Symbol]                       0x0800142c   Section        0  multimeter_functions.o(.text.initPinSelect)
+    [Anonymous Symbol]                       0x08001450   Section        0  timer_functions.o(.text.initTimer)
+    [Anonymous Symbol]                       0x080014a8   Section        0  main.o(.text.main)
+    [Anonymous Symbol]                       0x080014fc   Section        0  multimeter_functions.o(.text.map)
+    [Anonymous Symbol]                       0x08001518   Section        0  digital_functions.o(.text.setHigh)
+    [Anonymous Symbol]                       0x08001528   Section        0  digital_functions.o(.text.setLow)
+    [Anonymous Symbol]                       0x08001538   Section        0  multimeter_functions.o(.text.switchMode)
+    [Anonymous Symbol]                       0x08001580   Section        0  multimeter_functions.o(.text.waitForADCAndRead)
+    [Anonymous Symbol]                       0x080015a8   Section        0  timer_functions.o(.text.waitInterval)
+    CL$$btod_d2e                             0x080015be   Section       62  btod.o(CL$$btod_d2e)
+    CL$$btod_d2e_denorm_low                  0x080015fc   Section       70  btod.o(CL$$btod_d2e_denorm_low)
+    CL$$btod_d2e_norm_op1                    0x08001642   Section       96  btod.o(CL$$btod_d2e_norm_op1)
+    CL$$btod_div_common                      0x080016a4   Section      824  btod.o(CL$$btod_div_common)
+    CL$$btod_e2e                             0x080019dc   Section      220  btod.o(CL$$btod_e2e)
+    CL$$btod_ediv                            0x08001ab8   Section       42  btod.o(CL$$btod_ediv)
+    CL$$btod_emul                            0x08001ae2   Section       42  btod.o(CL$$btod_emul)
+    CL$$btod_mult_common                     0x08001b0c   Section      580  btod.o(CL$$btod_mult_common)
+    i.__ARM_fpclassify                       0x08001d50   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i._is_digit                              0x08001d80   Section        0  __printf_wp.o(i._is_digit)
+    locale$$code                             0x08001d90   Section       44  lc_numeric_c.o(locale$$code)
+    $v0                                      0x08001dbc   Number         0  dretinf.o(x$fpl$dretinf)
+    x$fpl$dretinf                            0x08001dbc   Section       12  dretinf.o(x$fpl$dretinf)
+    $v0                                      0x08001dc8   Number         0  f2d.o(x$fpl$f2d)
+    x$fpl$f2d                                0x08001dc8   Section       86  f2d.o(x$fpl$f2d)
+    $v0                                      0x08001e1e   Number         0  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fnaninf                            0x08001e1e   Section      140  fnaninf.o(x$fpl$fnaninf)
+    $v0                                      0x08001eaa   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x08001eaa   Section       26  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x08001ec4   Number         0  printf1.o(x$fpl$printf1)
+    x$fpl$printf1                            0x08001ec4   Section        4  printf1.o(x$fpl$printf1)
+    tenpwrs_x                                0x08001ec8   Data          60  bigflt0.o(.constdata)
+    .constdata                               0x08001ec8   Section      148  bigflt0.o(.constdata)
+    x$fpl$usenofp                            0x08001ec8   Section        0  usenofp.o(x$fpl$usenofp)
+    tenpwrs_i                                0x08001f04   Data          64  bigflt0.o(.constdata)
+    locale$$data                             0x08001f8c   Section       28  lc_numeric_c.o(locale$$data)
+    __lcnum_c_name                           0x08001f90   Data           2  lc_numeric_c.o(locale$$data)
+    __lcnum_c_start                          0x08001f98   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_point                          0x08001fa4   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_thousands                      0x08001fa6   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_grouping                       0x08001fa7   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_end                            0x08001fa8   Data           0  lc_numeric_c.o(locale$$data)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
     debounce_counter                         0x2000006c   Data           4  led_pb_functions.o(.bss.debounce_counter)
     [Anonymous Symbol]                       0x2000006c   Section        0  led_pb_functions.o(.bss.debounce_counter)
@@ -1699,56 +1699,56 @@ Image Symbol Table
     __default_signal_display                 0x08000d11   Thumb Code    50  defsig_general.o(.text)
     _ttywrch                                 0x08000d43   Thumb Code    14  sys_wrch.o(.text)
     EXTI0_IRQHandler                         0x08000d51   Thumb Code    50  led_pb_functions.o(.text.EXTI0_IRQHandler)
-    OutputValue                              0x08000d85   Thumb Code   192  multimeter_functions.o(.text.OutputValue)
-    PB_LCD_Clear                             0x08000e91   Thumb Code    22  pb_lcd_drivers.o(.text.PB_LCD_Clear)
-    PB_LCD_GoToXY                            0x08000ea9   Thumb Code    54  pb_lcd_drivers.o(.text.PB_LCD_GoToXY)
-    PB_LCD_Init                              0x08000ee1   Thumb Code   260  pb_lcd_drivers.o(.text.PB_LCD_Init)
-    PB_LCD_IsBusy                            0x08000fe5   Thumb Code   134  pb_lcd_drivers.o(.text.PB_LCD_IsBusy)
-    PB_LCD_Microdelay                        0x0800106d   Thumb Code    76  pb_lcd_drivers.o(.text.PB_LCD_Microdelay)
-    PB_LCD_Set_As_Input                      0x080010b9   Thumb Code    34  pb_lcd_drivers.o(.text.PB_LCD_Set_As_Input)
-    PB_LCD_Set_As_Output                     0x080010dd   Thumb Code    68  pb_lcd_drivers.o(.text.PB_LCD_Set_As_Output)
-    PB_LCD_Write                             0x08001121   Thumb Code   108  pb_lcd_drivers.o(.text.PB_LCD_Write)
-    PB_LCD_WriteString                       0x0800118d   Thumb Code    52  pb_lcd_drivers.o(.text.PB_LCD_WriteString)
-    SysTick_Handler                          0x080011e5   Thumb Code    16  timer_functions.o(.text.SysTick_Handler)
-    SystemCoreClockUpdate                    0x080011f5   Thumb Code   126  system_stm32f4xx.o(.text.SystemCoreClockUpdate)
-    SystemInit                               0x08001275   Thumb Code    18  system_stm32f4xx.o(.text.SystemInit)
-    initADC                                  0x080012b9   Thumb Code   110  multimeter_functions.o(.text.initADC)
-    initButton                               0x08001329   Thumb Code    82  led_pb_functions.o(.text.initButton)
-    initDAC                                  0x0800137d   Thumb Code    32  multimeter_functions.o(.text.initDAC)
-    initDigitalPins                          0x0800139d   Thumb Code    90  digital_functions.o(.text.initDigitalPins)
-    initLEDs                                 0x080013f9   Thumb Code    36  led_pb_functions.o(.text.initLEDs)
-    initPinSelect                            0x0800141d   Thumb Code    36  multimeter_functions.o(.text.initPinSelect)
-    initTimer                                0x08001441   Thumb Code    88  timer_functions.o(.text.initTimer)
-    main                                     0x08001499   Thumb Code    84  main.o(.text.main)
-    map                                      0x080014ed   Thumb Code    26  multimeter_functions.o(.text.map)
-    setHigh                                  0x08001509   Thumb Code    14  digital_functions.o(.text.setHigh)
-    setLow                                   0x08001519   Thumb Code    16  digital_functions.o(.text.setLow)
-    switchMode                               0x08001529   Thumb Code    72  multimeter_functions.o(.text.switchMode)
-    waitForADCAndRead                        0x08001571   Thumb Code    38  multimeter_functions.o(.text.waitForADCAndRead)
-    waitInterval                             0x08001599   Thumb Code    22  timer_functions.o(.text.waitInterval)
-    _btod_d2e                                0x080015af   Thumb Code    62  btod.o(CL$$btod_d2e)
-    _d2e_denorm_low                          0x080015ed   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
-    _d2e_norm_op1                            0x08001633   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
-    __btod_div_common                        0x08001695   Thumb Code   696  btod.o(CL$$btod_div_common)
-    _e2e                                     0x080019cd   Thumb Code   220  btod.o(CL$$btod_e2e)
-    _btod_ediv                               0x08001aa9   Thumb Code    42  btod.o(CL$$btod_ediv)
-    _btod_emul                               0x08001ad3   Thumb Code    42  btod.o(CL$$btod_emul)
-    __btod_mult_common                       0x08001afd   Thumb Code   580  btod.o(CL$$btod_mult_common)
-    __ARM_fpclassify                         0x08001d41   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
-    _is_digit                                0x08001d71   Thumb Code    14  __printf_wp.o(i._is_digit)
-    _get_lc_numeric                          0x08001d81   Thumb Code    44  lc_numeric_c.o(locale$$code)
-    __fpl_dretinf                            0x08001dad   Thumb Code    12  dretinf.o(x$fpl$dretinf)
-    __aeabi_f2d                              0x08001db9   Thumb Code     0  f2d.o(x$fpl$f2d)
-    _f2d                                     0x08001db9   Thumb Code    86  f2d.o(x$fpl$f2d)
-    __fpl_fnaninf                            0x08001e0f   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
-    _fp_init                                 0x08001e9b   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08001eb3   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08001eb3   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    _printf_fp_dec                           0x08001eb5   Thumb Code     4  printf1.o(x$fpl$printf1)
-    __I$use$fp                               0x08001eb8   Number         0  usenofp.o(x$fpl$usenofp)
-    AHBPrescTable                            0x08001f4c   Data          16  system_stm32f4xx.o(.rodata.AHBPrescTable)
-    Region$$Table$$Base                      0x08001f5c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08001f7c   Number         0  anon$$obj.o(Region$$Table)
+    OutputValue                              0x08000d85   Thumb Code   208  multimeter_functions.o(.text.OutputValue)
+    PB_LCD_Clear                             0x08000ea1   Thumb Code    22  pb_lcd_drivers.o(.text.PB_LCD_Clear)
+    PB_LCD_GoToXY                            0x08000eb9   Thumb Code    54  pb_lcd_drivers.o(.text.PB_LCD_GoToXY)
+    PB_LCD_Init                              0x08000ef1   Thumb Code   260  pb_lcd_drivers.o(.text.PB_LCD_Init)
+    PB_LCD_IsBusy                            0x08000ff5   Thumb Code   134  pb_lcd_drivers.o(.text.PB_LCD_IsBusy)
+    PB_LCD_Microdelay                        0x0800107d   Thumb Code    76  pb_lcd_drivers.o(.text.PB_LCD_Microdelay)
+    PB_LCD_Set_As_Input                      0x080010c9   Thumb Code    34  pb_lcd_drivers.o(.text.PB_LCD_Set_As_Input)
+    PB_LCD_Set_As_Output                     0x080010ed   Thumb Code    68  pb_lcd_drivers.o(.text.PB_LCD_Set_As_Output)
+    PB_LCD_Write                             0x08001131   Thumb Code   108  pb_lcd_drivers.o(.text.PB_LCD_Write)
+    PB_LCD_WriteString                       0x0800119d   Thumb Code    52  pb_lcd_drivers.o(.text.PB_LCD_WriteString)
+    SysTick_Handler                          0x080011f5   Thumb Code    16  timer_functions.o(.text.SysTick_Handler)
+    SystemCoreClockUpdate                    0x08001205   Thumb Code   126  system_stm32f4xx.o(.text.SystemCoreClockUpdate)
+    SystemInit                               0x08001285   Thumb Code    18  system_stm32f4xx.o(.text.SystemInit)
+    initADC                                  0x080012c9   Thumb Code   110  multimeter_functions.o(.text.initADC)
+    initButton                               0x08001339   Thumb Code    82  led_pb_functions.o(.text.initButton)
+    initDAC                                  0x0800138d   Thumb Code    32  multimeter_functions.o(.text.initDAC)
+    initDigitalPins                          0x080013ad   Thumb Code    90  digital_functions.o(.text.initDigitalPins)
+    initLEDs                                 0x08001409   Thumb Code    36  led_pb_functions.o(.text.initLEDs)
+    initPinSelect                            0x0800142d   Thumb Code    36  multimeter_functions.o(.text.initPinSelect)
+    initTimer                                0x08001451   Thumb Code    88  timer_functions.o(.text.initTimer)
+    main                                     0x080014a9   Thumb Code    84  main.o(.text.main)
+    map                                      0x080014fd   Thumb Code    26  multimeter_functions.o(.text.map)
+    setHigh                                  0x08001519   Thumb Code    14  digital_functions.o(.text.setHigh)
+    setLow                                   0x08001529   Thumb Code    16  digital_functions.o(.text.setLow)
+    switchMode                               0x08001539   Thumb Code    72  multimeter_functions.o(.text.switchMode)
+    waitForADCAndRead                        0x08001581   Thumb Code    38  multimeter_functions.o(.text.waitForADCAndRead)
+    waitInterval                             0x080015a9   Thumb Code    22  timer_functions.o(.text.waitInterval)
+    _btod_d2e                                0x080015bf   Thumb Code    62  btod.o(CL$$btod_d2e)
+    _d2e_denorm_low                          0x080015fd   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
+    _d2e_norm_op1                            0x08001643   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
+    __btod_div_common                        0x080016a5   Thumb Code   696  btod.o(CL$$btod_div_common)
+    _e2e                                     0x080019dd   Thumb Code   220  btod.o(CL$$btod_e2e)
+    _btod_ediv                               0x08001ab9   Thumb Code    42  btod.o(CL$$btod_ediv)
+    _btod_emul                               0x08001ae3   Thumb Code    42  btod.o(CL$$btod_emul)
+    __btod_mult_common                       0x08001b0d   Thumb Code   580  btod.o(CL$$btod_mult_common)
+    __ARM_fpclassify                         0x08001d51   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
+    _is_digit                                0x08001d81   Thumb Code    14  __printf_wp.o(i._is_digit)
+    _get_lc_numeric                          0x08001d91   Thumb Code    44  lc_numeric_c.o(locale$$code)
+    __fpl_dretinf                            0x08001dbd   Thumb Code    12  dretinf.o(x$fpl$dretinf)
+    __aeabi_f2d                              0x08001dc9   Thumb Code     0  f2d.o(x$fpl$f2d)
+    _f2d                                     0x08001dc9   Thumb Code    86  f2d.o(x$fpl$f2d)
+    __fpl_fnaninf                            0x08001e1f   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
+    _fp_init                                 0x08001eab   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08001ec3   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08001ec3   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    _printf_fp_dec                           0x08001ec5   Thumb Code     4  printf1.o(x$fpl$printf1)
+    __I$use$fp                               0x08001ec8   Number         0  usenofp.o(x$fpl$usenofp)
+    AHBPrescTable                            0x08001f5c   Data          16  system_stm32f4xx.o(.rodata.AHBPrescTable)
+    Region$$Table$$Base                      0x08001f6c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001f8c   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f4xx.o(.data.SystemCoreClock)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     ADCconv                                  0x20000068   Data           4  multimeter_functions.o(.bss.ADCconv)
@@ -1764,9 +1764,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000189
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001fa0, Max: 0x00100000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001fb0, Max: 0x00100000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001f98, Max: 0x00100000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001fa8, Max: 0x00100000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1861,83 +1861,83 @@ Memory Map of the image
     0x08000d42   0x08000d42   0x0000000e   Code   RO          893    .text               c_w.l(sys_wrch.o)
     0x08000d50   0x08000d50   0x00000032   Code   RO           53    .text.EXTI0_IRQHandler  led_pb_functions.o
     0x08000d82   0x08000d82   0x00000002   PAD
-    0x08000d84   0x08000d84   0x0000010c   Code   RO           78    .text.OutputValue   multimeter_functions.o
-    0x08000e90   0x08000e90   0x00000016   Code   RO           29    .text.PB_LCD_Clear  pb_lcd_drivers.o
-    0x08000ea6   0x08000ea6   0x00000002   PAD
-    0x08000ea8   0x08000ea8   0x00000036   Code   RO           31    .text.PB_LCD_GoToXY  pb_lcd_drivers.o
-    0x08000ede   0x08000ede   0x00000002   PAD
-    0x08000ee0   0x08000ee0   0x00000104   Code   RO           27    .text.PB_LCD_Init   pb_lcd_drivers.o
-    0x08000fe4   0x08000fe4   0x00000086   Code   RO           23    .text.PB_LCD_IsBusy  pb_lcd_drivers.o
-    0x0800106a   0x0800106a   0x00000002   PAD
-    0x0800106c   0x0800106c   0x0000004c   Code   RO           21    .text.PB_LCD_Microdelay  pb_lcd_drivers.o
-    0x080010b8   0x080010b8   0x00000022   Code   RO           19    .text.PB_LCD_Set_As_Input  pb_lcd_drivers.o
-    0x080010da   0x080010da   0x00000002   PAD
-    0x080010dc   0x080010dc   0x00000044   Code   RO           17    .text.PB_LCD_Set_As_Output  pb_lcd_drivers.o
-    0x08001120   0x08001120   0x0000006c   Code   RO           25    .text.PB_LCD_Write  pb_lcd_drivers.o
-    0x0800118c   0x0800118c   0x00000034   Code   RO           35    .text.PB_LCD_WriteString  pb_lcd_drivers.o
-    0x080011c0   0x080011c0   0x00000024   Code   RO            4    .text.SysTick_Config  main.o
-    0x080011e4   0x080011e4   0x00000010   Code   RO           96    .text.SysTick_Handler  timer_functions.o
-    0x080011f4   0x080011f4   0x0000007e   Code   RO          456    .text.SystemCoreClockUpdate  system_stm32f4xx.o
-    0x08001272   0x08001272   0x00000002   PAD
-    0x08001274   0x08001274   0x00000012   Code   RO          454    .text.SystemInit    system_stm32f4xx.o
-    0x08001286   0x08001286   0x00000002   PAD
-    0x08001288   0x08001288   0x0000000e   Code   RO           49    .text.__NVIC_EnableIRQ  led_pb_functions.o
+    0x08000d84   0x08000d84   0x0000011c   Code   RO           78    .text.OutputValue   multimeter_functions.o
+    0x08000ea0   0x08000ea0   0x00000016   Code   RO           29    .text.PB_LCD_Clear  pb_lcd_drivers.o
+    0x08000eb6   0x08000eb6   0x00000002   PAD
+    0x08000eb8   0x08000eb8   0x00000036   Code   RO           31    .text.PB_LCD_GoToXY  pb_lcd_drivers.o
+    0x08000eee   0x08000eee   0x00000002   PAD
+    0x08000ef0   0x08000ef0   0x00000104   Code   RO           27    .text.PB_LCD_Init   pb_lcd_drivers.o
+    0x08000ff4   0x08000ff4   0x00000086   Code   RO           23    .text.PB_LCD_IsBusy  pb_lcd_drivers.o
+    0x0800107a   0x0800107a   0x00000002   PAD
+    0x0800107c   0x0800107c   0x0000004c   Code   RO           21    .text.PB_LCD_Microdelay  pb_lcd_drivers.o
+    0x080010c8   0x080010c8   0x00000022   Code   RO           19    .text.PB_LCD_Set_As_Input  pb_lcd_drivers.o
+    0x080010ea   0x080010ea   0x00000002   PAD
+    0x080010ec   0x080010ec   0x00000044   Code   RO           17    .text.PB_LCD_Set_As_Output  pb_lcd_drivers.o
+    0x08001130   0x08001130   0x0000006c   Code   RO           25    .text.PB_LCD_Write  pb_lcd_drivers.o
+    0x0800119c   0x0800119c   0x00000034   Code   RO           35    .text.PB_LCD_WriteString  pb_lcd_drivers.o
+    0x080011d0   0x080011d0   0x00000024   Code   RO            4    .text.SysTick_Config  main.o
+    0x080011f4   0x080011f4   0x00000010   Code   RO           96    .text.SysTick_Handler  timer_functions.o
+    0x08001204   0x08001204   0x0000007e   Code   RO          456    .text.SystemCoreClockUpdate  system_stm32f4xx.o
+    0x08001282   0x08001282   0x00000002   PAD
+    0x08001284   0x08001284   0x00000012   Code   RO          454    .text.SystemInit    system_stm32f4xx.o
     0x08001296   0x08001296   0x00000002   PAD
-    0x08001298   0x08001298   0x0000000e   Code   RO            6    .text.__NVIC_SetPriority  main.o
+    0x08001298   0x08001298   0x0000000e   Code   RO           49    .text.__NVIC_EnableIRQ  led_pb_functions.o
     0x080012a6   0x080012a6   0x00000002   PAD
-    0x080012a8   0x080012a8   0x0000000e   Code   RO           51    .text.__NVIC_SetPriority  led_pb_functions.o
+    0x080012a8   0x080012a8   0x0000000e   Code   RO            6    .text.__NVIC_SetPriority  main.o
     0x080012b6   0x080012b6   0x00000002   PAD
-    0x080012b8   0x080012b8   0x0000006e   Code   RO           70    .text.initADC       multimeter_functions.o
-    0x08001326   0x08001326   0x00000002   PAD
-    0x08001328   0x08001328   0x00000052   Code   RO           47    .text.initButton    led_pb_functions.o
-    0x0800137a   0x0800137a   0x00000002   PAD
-    0x0800137c   0x0800137c   0x00000020   Code   RO           72    .text.initDAC       multimeter_functions.o
-    0x0800139c   0x0800139c   0x0000005a   Code   RO          131    .text.initDigitalPins  digital_functions.o
-    0x080013f6   0x080013f6   0x00000002   PAD
-    0x080013f8   0x080013f8   0x00000024   Code   RO           45    .text.initLEDs      led_pb_functions.o
-    0x0800141c   0x0800141c   0x00000024   Code   RO           74    .text.initPinSelect  multimeter_functions.o
-    0x08001440   0x08001440   0x00000058   Code   RO          100    .text.initTimer     timer_functions.o
-    0x08001498   0x08001498   0x00000054   Code   RO            2    .text.main          main.o
-    0x080014ec   0x080014ec   0x0000001a   Code   RO           80    .text.map           multimeter_functions.o
-    0x08001506   0x08001506   0x00000002   PAD
-    0x08001508   0x08001508   0x0000000e   Code   RO          133    .text.setHigh       digital_functions.o
+    0x080012b8   0x080012b8   0x0000000e   Code   RO           51    .text.__NVIC_SetPriority  led_pb_functions.o
+    0x080012c6   0x080012c6   0x00000002   PAD
+    0x080012c8   0x080012c8   0x0000006e   Code   RO           70    .text.initADC       multimeter_functions.o
+    0x08001336   0x08001336   0x00000002   PAD
+    0x08001338   0x08001338   0x00000052   Code   RO           47    .text.initButton    led_pb_functions.o
+    0x0800138a   0x0800138a   0x00000002   PAD
+    0x0800138c   0x0800138c   0x00000020   Code   RO           72    .text.initDAC       multimeter_functions.o
+    0x080013ac   0x080013ac   0x0000005a   Code   RO          131    .text.initDigitalPins  digital_functions.o
+    0x08001406   0x08001406   0x00000002   PAD
+    0x08001408   0x08001408   0x00000024   Code   RO           45    .text.initLEDs      led_pb_functions.o
+    0x0800142c   0x0800142c   0x00000024   Code   RO           74    .text.initPinSelect  multimeter_functions.o
+    0x08001450   0x08001450   0x00000058   Code   RO          100    .text.initTimer     timer_functions.o
+    0x080014a8   0x080014a8   0x00000054   Code   RO            2    .text.main          main.o
+    0x080014fc   0x080014fc   0x0000001a   Code   RO           80    .text.map           multimeter_functions.o
     0x08001516   0x08001516   0x00000002   PAD
-    0x08001518   0x08001518   0x00000010   Code   RO          135    .text.setLow        digital_functions.o
-    0x08001528   0x08001528   0x00000048   Code   RO           84    .text.switchMode    multimeter_functions.o
-    0x08001570   0x08001570   0x00000026   Code   RO           76    .text.waitForADCAndRead  multimeter_functions.o
-    0x08001596   0x08001596   0x00000002   PAD
-    0x08001598   0x08001598   0x00000016   Code   RO           98    .text.waitInterval  timer_functions.o
-    0x080015ae   0x080015ae   0x0000003e   Code   RO          728    CL$$btod_d2e        c_w.l(btod.o)
-    0x080015ec   0x080015ec   0x00000046   Code   RO          730    CL$$btod_d2e_denorm_low  c_w.l(btod.o)
-    0x08001632   0x08001632   0x00000060   Code   RO          729    CL$$btod_d2e_norm_op1  c_w.l(btod.o)
-    0x08001692   0x08001692   0x00000002   PAD
-    0x08001694   0x08001694   0x00000338   Code   RO          738    CL$$btod_div_common  c_w.l(btod.o)
-    0x080019cc   0x080019cc   0x000000dc   Code   RO          735    CL$$btod_e2e        c_w.l(btod.o)
-    0x08001aa8   0x08001aa8   0x0000002a   Code   RO          732    CL$$btod_ediv       c_w.l(btod.o)
-    0x08001ad2   0x08001ad2   0x0000002a   Code   RO          731    CL$$btod_emul       c_w.l(btod.o)
-    0x08001afc   0x08001afc   0x00000244   Code   RO          737    CL$$btod_mult_common  c_w.l(btod.o)
-    0x08001d40   0x08001d40   0x00000030   Code   RO          782    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
-    0x08001d70   0x08001d70   0x0000000e   Code   RO          556    i._is_digit         c_w.l(__printf_wp.o)
-    0x08001d7e   0x08001d7e   0x00000002   PAD
-    0x08001d80   0x08001d80   0x0000002c   Code   RO          767    locale$$code        c_w.l(lc_numeric_c.o)
-    0x08001dac   0x08001dac   0x0000000c   Code   RO          677    x$fpl$dretinf       fz_wm.l(dretinf.o)
-    0x08001db8   0x08001db8   0x00000056   Code   RO          573    x$fpl$f2d           fz_wm.l(f2d.o)
-    0x08001e0e   0x08001e0e   0x0000008c   Code   RO          679    x$fpl$fnaninf       fz_wm.l(fnaninf.o)
-    0x08001e9a   0x08001e9a   0x0000001a   Code   RO          778    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08001eb4   0x08001eb4   0x00000004   Code   RO          575    x$fpl$printf1       fz_wm.l(printf1.o)
-    0x08001eb8   0x08001eb8   0x00000000   Code   RO          681    x$fpl$usenofp       fz_wm.l(usenofp.o)
-    0x08001eb8   0x08001eb8   0x00000094   Data   RO          726    .constdata          c_w.l(bigflt0.o)
-    0x08001f4c   0x08001f4c   0x00000010   Data   RO          459    .rodata.AHBPrescTable  system_stm32f4xx.o
-    0x08001f5c   0x08001f5c   0x00000020   Data   RO          941    Region$$Table       anon$$obj.o
-    0x08001f7c   0x08001f7c   0x0000001c   Data   RO          766    locale$$data        c_w.l(lc_numeric_c.o)
+    0x08001518   0x08001518   0x0000000e   Code   RO          133    .text.setHigh       digital_functions.o
+    0x08001526   0x08001526   0x00000002   PAD
+    0x08001528   0x08001528   0x00000010   Code   RO          135    .text.setLow        digital_functions.o
+    0x08001538   0x08001538   0x00000048   Code   RO           84    .text.switchMode    multimeter_functions.o
+    0x08001580   0x08001580   0x00000026   Code   RO           76    .text.waitForADCAndRead  multimeter_functions.o
+    0x080015a6   0x080015a6   0x00000002   PAD
+    0x080015a8   0x080015a8   0x00000016   Code   RO           98    .text.waitInterval  timer_functions.o
+    0x080015be   0x080015be   0x0000003e   Code   RO          728    CL$$btod_d2e        c_w.l(btod.o)
+    0x080015fc   0x080015fc   0x00000046   Code   RO          730    CL$$btod_d2e_denorm_low  c_w.l(btod.o)
+    0x08001642   0x08001642   0x00000060   Code   RO          729    CL$$btod_d2e_norm_op1  c_w.l(btod.o)
+    0x080016a2   0x080016a2   0x00000002   PAD
+    0x080016a4   0x080016a4   0x00000338   Code   RO          738    CL$$btod_div_common  c_w.l(btod.o)
+    0x080019dc   0x080019dc   0x000000dc   Code   RO          735    CL$$btod_e2e        c_w.l(btod.o)
+    0x08001ab8   0x08001ab8   0x0000002a   Code   RO          732    CL$$btod_ediv       c_w.l(btod.o)
+    0x08001ae2   0x08001ae2   0x0000002a   Code   RO          731    CL$$btod_emul       c_w.l(btod.o)
+    0x08001b0c   0x08001b0c   0x00000244   Code   RO          737    CL$$btod_mult_common  c_w.l(btod.o)
+    0x08001d50   0x08001d50   0x00000030   Code   RO          782    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
+    0x08001d80   0x08001d80   0x0000000e   Code   RO          556    i._is_digit         c_w.l(__printf_wp.o)
+    0x08001d8e   0x08001d8e   0x00000002   PAD
+    0x08001d90   0x08001d90   0x0000002c   Code   RO          767    locale$$code        c_w.l(lc_numeric_c.o)
+    0x08001dbc   0x08001dbc   0x0000000c   Code   RO          677    x$fpl$dretinf       fz_wm.l(dretinf.o)
+    0x08001dc8   0x08001dc8   0x00000056   Code   RO          573    x$fpl$f2d           fz_wm.l(f2d.o)
+    0x08001e1e   0x08001e1e   0x0000008c   Code   RO          679    x$fpl$fnaninf       fz_wm.l(fnaninf.o)
+    0x08001eaa   0x08001eaa   0x0000001a   Code   RO          778    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x08001ec4   0x08001ec4   0x00000004   Code   RO          575    x$fpl$printf1       fz_wm.l(printf1.o)
+    0x08001ec8   0x08001ec8   0x00000000   Code   RO          681    x$fpl$usenofp       fz_wm.l(usenofp.o)
+    0x08001ec8   0x08001ec8   0x00000094   Data   RO          726    .constdata          c_w.l(bigflt0.o)
+    0x08001f5c   0x08001f5c   0x00000010   Data   RO          459    .rodata.AHBPrescTable  system_stm32f4xx.o
+    0x08001f6c   0x08001f6c   0x00000020   Data   RO          941    Region$$Table       anon$$obj.o
+    0x08001f8c   0x08001f8c   0x0000001c   Data   RO          766    locale$$data        c_w.l(lc_numeric_c.o)
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001f98, Size: 0x00000678, Max: 0x00020000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001fa8, Size: 0x00000678, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08001f98   0x00000004   Data   RW          458    .data.SystemCoreClock  system_stm32f4xx.o
-    0x20000004   0x08001f9c   0x00000004   PAD
+    0x20000000   0x08001fa8   0x00000004   Data   RW          458    .data.SystemCoreClock  system_stm32f4xx.o
+    0x20000004   0x08001fac   0x00000004   PAD
     0x20000008        -       0x00000060   Zero   RW          687    .bss                c_w.l(libspace.o)
     0x20000068        -       0x00000004   Zero   RW           86    .bss.ADCconv        multimeter_functions.o
     0x2000006c        -       0x00000004   Zero   RW           61    .bss.debounce_counter  led_pb_functions.o
@@ -1954,17 +1954,17 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       120          0          0          0          0       2019   digital_functions.o
-       196          0          0          0          4       5630   led_pb_functions.o
-       134          0          0          0          0       4102   main.o
-       582         80          0          0          8       3952   multimeter_functions.o
-       808          4          0          0          0       4509   pb_lcd_drivers.o
-        64         26        392          0       1536        848   startup_stm32f407xx.o
-       144          0         16          4          0       2688   system_stm32f4xx.o
-       126          0          0          0          4       2478   timer_functions.o
+       120          0          0          0          0       2043   digital_functions.o
+       196          0          0          0          4       5655   led_pb_functions.o
+       134          0          0          0          0       4126   main.o
+       598         80          0          0          8       4040   multimeter_functions.o
+       808          4          0          0          0       4533   pb_lcd_drivers.o
+        64         26        392          0       1536        872   startup_stm32f407xx.o
+       144          0         16          4          0       2712   system_stm32f4xx.o
+       126          0          0          0          4       2502   timer_functions.o
 
     ----------------------------------------------------------------------
-      2206        110        440          4       1556      26226   Object Totals
+      2222        110        440          4       1556      26483   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         32          0          0          0          4          0   (incl. Padding)
 
@@ -2051,15 +2051,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7472        372        616          4       1652      27954   Grand Totals
-      7472        372        616          4       1652      27954   ELF Image Totals
-      7472        372        616          4          0          0   ROM Totals
+      7488        372        616          4       1652      28211   Grand Totals
+      7488        372        616          4       1652      28211   ELF Image Totals
+      7488        372        616          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 8088 (   7.90kB)
+    Total RO  Size (Code + RO Data)                 8104 (   7.91kB)
     Total RW  Size (RW Data + ZI Data)              1656 (   1.62kB)
-    Total ROM Size (Code + RO Data + RW Data)       8092 (   7.90kB)
+    Total ROM Size (Code + RO Data + RW Data)       8108 (   7.92kB)
 
 ==============================================================================
 
