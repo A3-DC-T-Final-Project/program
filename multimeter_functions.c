@@ -43,9 +43,9 @@ void initADC(void){
 
 void initDAC(void){
 	// Enables clock for required registers in GPIOA
-	RCC->AHB1ENR = (RCC->AHB1ENR & ~0x00000001ul) | 0x00000001;
+	//RCC->AHB1ENR = (RCC->AHB1ENR & ~0x00000001ul) | 0x00000001;
 	// Sets the MODE to analogue input/output (0b11)
-	GPIOA->MODER = (GPIOA->MODER & ~GPIO_MODER_MODER4_Msk) | (0x3 << GPIO_MODER_MODER4_Pos);
+	//GPIOA->MODER = (GPIOA->MODER & ~GPIO_MODER_MODER4_Msk) | (0x3 << GPIO_MODER_MODER4_Pos);
 }
 
 void initPinSelect(void){

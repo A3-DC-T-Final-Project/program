@@ -1,5 +1,3 @@
-#include "array-queue.h"
-
 #ifndef multimeter_functions_FILE
 #define multimeter_functions_FILE
 
