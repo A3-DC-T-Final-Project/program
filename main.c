@@ -13,6 +13,7 @@ int main (void){
 	// Initialisation functions
 	SystemCoreClockUpdate();
 	SysTick_Config(SystemCoreClock/1000);
+	initDigitalPins();
 	initTimer();
 	initDAC();
 	initADC();
@@ -20,7 +21,7 @@ int main (void){
 	initLEDs();
 	initButton();
 	PB_LCD_Init();
-	initDigitalPins();
+	
 	initFrequencyPin();
 	
 	// Initial conditions
@@ -30,6 +31,7 @@ int main (void){
 	waitForADCAndRead();
 	
 	uint32_t incr = 0;
+	uint32_t ourT = 0;
 	
 	// Output value to LCD
 	while(1){
@@ -39,11 +41,10 @@ int main (void){
 			switchMode();
 		}*/
 		
-		PB_LCD_Clear();
+		/*PB_LCD_Clear();
 		PB_LCD_GoToXY(0, 0);
 		char * output = malloc(13 * sizeof(char));
 		
-		uint32_t test = TIM4->CNT;
 		snprintf(output, 13 * sizeof(char), "%u", test);
 		
 		PB_LCD_WriteString(output, 12);
@@ -53,8 +54,27 @@ int main (void){
 		PB_LCD_WriteString(output, 12);
 		incr++;
 		
+		free(output);*/
+		
+		uint32_t test = TIM1->CNT;
+		double freq = (1 / test);
+		
+		PB_LCD_Clear();
+		PB_LCD_GoToXY(0, 0);
+		char * output = malloc(13 * sizeof(char));
+	
+		snprintf(output, 13 * sizeof(char), "%.2lf Hz", freq);
+		PB_LCD_WriteString(output, 12);
+		
+		snprintf(output, 13 * sizeof(char), "%u", test);
+		PB_LCD_GoToXY(0, 1);
+		PB_LCD_WriteString(output, 12);
+		
 		free(output);
 		
-		waitInterval(DEBOUNCE_TIME);
+		TIM1->CNT = 0;
+		
+		
+		waitInterval(/*DEBOUNCE_TIME*/ 1000);
 	}
 }
