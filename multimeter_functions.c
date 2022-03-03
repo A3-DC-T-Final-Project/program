@@ -13,11 +13,14 @@
 uint32_t ADCconv;
 // Int var for read mode
 int read_mode;
+// Int var for voltage range
+int voltage_range;
 
 void initADC(void){
-	// Initialise ADConv, read_mode variable
+	// Initialise ADConv, read_mode, voltage_range variable
 	ADCconv = 0;
 	read_mode = 0;
+	voltage_range = 0;
 	
 	// Enables clock for required registers in GPIOC
 	RCC->AHB1ENR = (RCC->AHB1ENR & ~0x0000004ul) | 0x00000004;
@@ -89,12 +92,37 @@ void OutputValue(void){
 	float total;
 	float mapped_value = 0;
 	
+	// Allocate memory and define string var for the LCD value buffer
+	char* value = malloc(13*sizeof(char));
+	
 	// Switch to write output
 	switch(read_mode){
 		case DC_MODE:
 			// Map the value of the ADC to the correct numbers
 		  total = DCVoltage();
-			mapped_value = map(total, 0, 4095, 0, 3);
+		
+			switch (voltage_range) {
+				// TODO: Do not repeat snprintf calls
+				default:
+				case V_100M_RANGE:
+					mapped_value = map(total, ADC_MIN, ADC_MAX, -100, 100);
+					// Put the value of the ADC into the value buffer
+					snprintf(value, 13*sizeof(char), "%.3f mV", mapped_value);
+					break;
+				case V_1_RANGE:
+					mapped_value = map(total, ADC_MIN, ADC_MAX, -1, 1);
+					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
+					break;
+				case V_5_RANGE:
+					mapped_value = map(total, ADC_MIN, ADC_MAX, -5, 5);
+					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
+					break;
+				case V_10_RANGE:
+					mapped_value = map(total, ADC_MIN, ADC_MAX, -10, 10);
+					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
+					break;
+			}
+			
 			break;
 		case AC_MODE:
 			// AC voltage map
@@ -111,12 +139,9 @@ void OutputValue(void){
 			break;
 	}
 
-	// Allocate memory and define string var for the LCD value buffer
-	char* value = malloc(13*sizeof(char));
-	// Put the value of the ADC into the value buffer
-	snprintf(value, 13*sizeof(char), "%.3f", (double)mapped_value);
 	// Write value buffer to LCD
-	PB_LCD_WriteString(value, 0xF);
+	PB_LCD_WriteString(value, 0xC);
+
 	// Free the allocated memory
 	free(value);
 } 
@@ -166,6 +191,33 @@ void switchMode(void){
 			setHigh(GPIOB, 5);
 			break;
 		default:
+			break;
+	}
+}
+
+void changeVoltageRange(int range) {
+	voltage_range = range;
+	switch (range) {
+		case V_100M_RANGE:
+			setLow(GPIOE, 3);
+			setLow(GPIOE, 4);
+			break;
+		case V_1_RANGE:
+			setHigh(GPIOE, 3);
+			setLow(GPIOE, 4);
+			break;
+		case V_5_RANGE:
+			setLow(GPIOE, 3);
+			setHigh(GPIOE, 4);
+			break;
+		case V_10_RANGE:
+			setHigh(GPIOE, 3);
+			setHigh(GPIOE, 4);
+			break;
+		default:
+			voltage_range = V_100M_RANGE;
+			setLow(GPIOE, 3);
+			setLow(GPIOE, 4);
 			break;
 	}
 }
