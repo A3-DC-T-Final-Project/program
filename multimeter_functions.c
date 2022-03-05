@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <math.h>
 
 #include "stm32f407xx.h"
@@ -8,6 +9,7 @@
 #include "multimeter_functions.h"
 #include "digital_functions.h"
 #include "math_functions.h"
+#include "ranges.h"
 
 // Int var for ADC conversions
 uint32_t ADCconv;
@@ -16,11 +18,14 @@ int read_mode;
 // Int var for voltage range
 int voltage_range;
 
+// Conversion bounds
+float conversion_upper_bound;
+float conversion_lower_bound;
+
 void initADC(void){
-	// Initialise ADConv, read_mode, voltage_range variable
+	// Initialise ADConv, read_mode variable
 	ADCconv = 0;
 	read_mode = 0;
-	voltage_range = 0;
 	
 	// Enables clock for required registers in GPIOC
 	RCC->AHB1ENR = (RCC->AHB1ENR & ~0x0000004ul) | 0x00000004;
@@ -39,6 +44,9 @@ void initADC(void){
 	// Enable EOCS for End Of Conversion Selection
 	// Enables overrun detection
 	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_EOCS_Msk) | (0x1 << ADC_CR2_EOCS_Pos);
+	
+	// Default to 10V range on startup
+	changeVoltageRange(V_10_RANGE);
 }
 
 void initPinSelect(void){
@@ -95,15 +103,20 @@ void OutputValue(void){
 	// Allocate memory and define string var for the LCD value buffer
 	char* value = malloc(13*sizeof(char));
 	
+	// Flag to keep track of correct measuring
+	bool conversion = false;
+
 	// Switch to write output
 	switch(read_mode){
 		case DC_MODE:
-			// Map the value of the ADC to the correct numbers
-		  total = DCVoltage();
-		
+			// Placeholder value 
+			total = (ADC_MAX / 2);	
+			while (!conversion) {
+					// Map the value of the ADC to the correct numbers
+					total = DCVoltage(&conversion);
+			}		
 			switch (voltage_range) {
 				// TODO: Do not repeat snprintf calls
-				default:
 				case V_100M_RANGE:
 					mapped_value = map(total, ADC_MIN, ADC_MAX, -100, 100);
 					// Put the value of the ADC into the value buffer
@@ -117,6 +130,7 @@ void OutputValue(void){
 					mapped_value = map(total, ADC_MIN, ADC_MAX, -5, 5);
 					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
 					break;
+				default:
 				case V_10_RANGE:
 					mapped_value = map(total, ADC_MIN, ADC_MAX, -10, 10);
 					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
@@ -172,6 +186,35 @@ float ACVoltage(){
 	return rms_total;
 }
 
+float DCVoltage(bool * conversion){
+	double total = 0;
+	int i;
+	for(i=0; i<1000; i++){
+		waitForADCAndRead();
+		total += ADCconv;
+	}
+
+	float mean_total;
+	mean_total = MeanAverage(total, 1000);
+	
+	// If the mean is between the bounds of another range
+	// switch to said range;
+	if((mean_total > conversion_lower_bound) && (mean_total < conversion_upper_bound)) {
+		(*conversion) = false;
+		changeVoltageRange(voltage_range - 1);
+	} else {
+		(*conversion) = true;
+	}
+	
+	// If the mean is ADC_MAX, use the upper range (max range 10V, so no upper range for 10V)
+	if(((uint32_t) mean_total == ADC_MAX) && (voltage_range != V_10_RANGE)) {
+		(*conversion) = false;
+		changeVoltageRange(voltage_range + 1);
+	}
+	
+	return mean_total;
+}
+
 void switchMode(void){
 	read_mode++;
 	if(read_mode == (R_MODE + 1)){
@@ -201,23 +244,33 @@ void changeVoltageRange(int range) {
 		case V_100M_RANGE:
 			setLow(GPIOE, 3);
 			setLow(GPIOE, 4);
+			conversion_lower_bound = -1;
+			conversion_upper_bound = -1;
 			break;
 		case V_1_RANGE:
 			setHigh(GPIOE, 3);
 			setLow(GPIOE, 4);
+			conversion_lower_bound = V_1_M100mV;
+			conversion_upper_bound = V_1_P100mV;
 			break;
 		case V_5_RANGE:
 			setLow(GPIOE, 3);
 			setHigh(GPIOE, 4);
+			conversion_lower_bound = V_5_M1V;
+			conversion_upper_bound = V_5_P1V;
 			break;
 		case V_10_RANGE:
 			setHigh(GPIOE, 3);
 			setHigh(GPIOE, 4);
+			conversion_lower_bound = V_10_M5V;
+			conversion_upper_bound = V_10_P5V;
 			break;
 		default:
-			voltage_range = V_100M_RANGE;
-			setLow(GPIOE, 3);
-			setLow(GPIOE, 4);
+			voltage_range = V_10_RANGE;
+			conversion_lower_bound = V_10_M5V;
+			conversion_upper_bound = V_10_P5V;
+			setHigh(GPIOE, 3);
+			setHigh(GPIOE, 4);
 			break;
 	}
 }

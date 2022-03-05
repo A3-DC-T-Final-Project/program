@@ -1,6 +1,8 @@
 #ifndef MULTIMETER_FUNCTIONS_H
 #define MULTIMETER_FUNCTIONS_H
 
+#include <stdbool.h>
+
 #include "stm32f407xx.h"
 
 #define DC_MODE 0
@@ -29,5 +31,7 @@ void changeVoltageRange(int range);
 extern uint32_t ADCconv;
 extern int read_mode;
 extern int voltage_range;
+extern float conversion_upper_bound;
+extern float conversion_lower_bound;
 
 #endif
