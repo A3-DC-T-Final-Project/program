@@ -97,7 +97,7 @@ void OutputValue(void){
 	// Write to second line
 	PB_LCD_GoToXY(0, 1);
 	// Compile time variables
-	float total;
+	float total = (ADC_MAX / 2); // Placeholder value
 	float mapped_value = 0;
 	
 	// Allocate memory and define string var for the LCD value buffer
@@ -105,17 +105,37 @@ void OutputValue(void){
 	
 	// Flag to keep track of correct measuring
 	bool conversion = false;
+	// Flag to keep track of voltage measuring
+	bool isVoltageReading = false;
 
 	// Switch to write output
 	switch(read_mode){
-		case DC_MODE:
-			// Placeholder value 
-			total = (ADC_MAX / 2);	
+		case DC_MODE:	
 			while (!conversion) {
 					// Map the value of the ADC to the correct numbers
 					total = DCVoltage(&conversion);
-			}		
-			switch (voltage_range) {
+				}
+			isVoltageReading = true;
+			break;
+		case AC_MODE:
+			while (!conversion) {
+					// Map the value of the ADC to the correct numbers
+					total = ACVoltage(&conversion);
+				}
+			isVoltageReading = true;
+			break;
+		case I_MODE:
+			// Current map
+			break;
+		case R_MODE:
+			// Resistance map
+			break;
+		default:
+			break;
+	}
+	
+	if (isVoltageReading) {
+		switch (voltage_range) {
 				// TODO: Do not repeat snprintf calls
 				case V_100M_RANGE:
 					mapped_value = map(total, ADC_MIN, ADC_MAX, -100, 100);
@@ -136,21 +156,6 @@ void OutputValue(void){
 					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
 					break;
 			}
-			
-			break;
-		case AC_MODE:
-			// AC voltage map
-			total = ACVoltage();
-			mapped_value = map(total, 0, 4095, 0, 3);
-			break;
-		case I_MODE:
-			// Current map
-			break;
-		case R_MODE:
-			// Resistance map
-			break;
-		default:
-			break;
 	}
 
 	// Write value buffer to LCD
@@ -160,20 +165,24 @@ void OutputValue(void){
 	free(value);
 } 
 
-float DCVoltage(){
-	double total = 0;
-	int i;
-	for(i=0; i<1000; i++){
-		waitForADCAndRead();
-		total += ADCconv;
+void checkIfInRange(float value, bool * conversion) {
+	// If the mean is between the bounds of another range
+	// switch to said range;
+	if((value > conversion_lower_bound) && (value < conversion_upper_bound)) {
+		(*conversion) = false;
+		changeVoltageRange(voltage_range - 1);
+	} else {
+		(*conversion) = true;
 	}
-
-	float mean_total;
-	mean_total = MeanAverage(total, 1000);
-	return mean_total;
+	
+	// If the mean is ADC_MAX, use the upper range (max range 10V, so no upper range for 10V)
+	if(((uint32_t) value == ADC_MAX) && (voltage_range != V_10_RANGE)) {
+		(*conversion) = false;
+		changeVoltageRange(voltage_range + 1);
+	}
 }
 
-float ACVoltage(){
+float ACVoltage(bool * conversion){
 	double squares_total = 0;
 	int i;
 	for(i=0; i<1000; i++){
@@ -183,6 +192,9 @@ float ACVoltage(){
 
 	float rms_total;
 	rms_total = RMSAverage(squares_total, 1000);
+
+	checkIfInRange(rms_total, conversion);
+
 	return rms_total;
 }
 
@@ -197,20 +209,7 @@ float DCVoltage(bool * conversion){
 	float mean_total;
 	mean_total = MeanAverage(total, 1000);
 	
-	// If the mean is between the bounds of another range
-	// switch to said range;
-	if((mean_total > conversion_lower_bound) && (mean_total < conversion_upper_bound)) {
-		(*conversion) = false;
-		changeVoltageRange(voltage_range - 1);
-	} else {
-		(*conversion) = true;
-	}
-	
-	// If the mean is ADC_MAX, use the upper range (max range 10V, so no upper range for 10V)
-	if(((uint32_t) mean_total == ADC_MAX) && (voltage_range != V_10_RANGE)) {
-		(*conversion) = false;
-		changeVoltageRange(voltage_range + 1);
-	}
+	checkIfInRange(mean_total, conversion);
 	
 	return mean_total;
 }

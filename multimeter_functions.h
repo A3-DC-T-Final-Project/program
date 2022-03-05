@@ -22,11 +22,12 @@ void initADC(void);
 void initPinSelect(void);
 void waitForADCAndRead(void);
 void OutputValue(void);
-float DCVoltage(void);
-float ACVoltage(void);
+float DCVoltage(bool * conversion);
+float ACVoltage(bool * conversion);
 void switchMode(void);
 
 void changeVoltageRange(int range);
+void checkIfInRange(float value, bool * conversion);
 
 extern uint32_t ADCconv;
 extern int read_mode;
