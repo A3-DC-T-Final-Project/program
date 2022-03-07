@@ -5,7 +5,6 @@
 #include "stm32f407xx.h"
 #include "PB_LCD_Drivers.h"
 #include "LED_PB_functions.h"
-#include "timer_functions.h"
 #include "multimeter_functions.h"
 #include "digital_functions.h"
 #include "math_functions.h"
@@ -37,15 +36,6 @@ void initADC(void){
 	// Enable EOCS for End Of Conversion Selection
 	// Enables overrun detection
 	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_EOCS_Msk) | (0x1 << ADC_CR2_EOCS_Pos);
-	// Starts conversion for regular channels
-	//ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_SWSTART_Msk) | (0x1 << ADC_CR2_SWSTART_Pos);
-}
-
-void initDAC(void){
-	// Enables clock for required registers in GPIOA
-	RCC->AHB1ENR = (RCC->AHB1ENR & ~0x00000001ul) | 0x00000001;
-	// Sets the MODE to analogue input/output (0b11)
-	GPIOA->MODER = (GPIOA->MODER & ~GPIO_MODER_MODER4_Msk) | (0x3 << GPIO_MODER_MODER4_Pos);
 }
 
 void initPinSelect(void){
@@ -56,7 +46,7 @@ void initPinSelect(void){
 }
 
 void waitForADCAndRead(void){
-	// Starts conversion for regular channels
+	// Starts a conversion for regular channels
 	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_SWSTART_Msk) | (0x1 << ADC_CR2_SWSTART_Pos);
 	// Waits for the EOC flag to be triggered
 	do {
@@ -101,20 +91,20 @@ void OutputValue(void){
 	
 	// Switch to write output
 	switch(read_mode){
-		case 0:
+		case DC_MODE:
 			// Map the value of the ADC to the correct numbers
 		  total = DCVoltage();
 			mapped_value = map(total, 0, 4095, 0, 3);
 			break;
-		case 1:
+		case AC_MODE:
 			// AC voltage map
 			total = ACVoltage();
 			mapped_value = map(total, 0, 4095, 0, 3);
 			break;
-		case 2:
+		case I_MODE:
 			// Current map
 			break;
-		case 3:
+		case R_MODE:
 			// Resistance map
 			break;
 		default:
@@ -124,27 +114,12 @@ void OutputValue(void){
 	// Allocate memory and define string var for the LCD value buffer
 	char* value = malloc(13*sizeof(char));
 	// Put the value of the ADC into the value buffer
-	snprintf(value, 13*sizeof(char), "%.3f", mapped_value);
+	snprintf(value, 13*sizeof(char), "%.3f", (double)mapped_value);
 	// Write value buffer to LCD
-	
-	// TODO: That is 18 not 12
-	PB_LCD_WriteString(value, 0x12);
+	PB_LCD_WriteString(value, 0xF);
 	// Free the allocated memory
 	free(value);
 } 
-
-float ACVoltage(){
-	double squares_total = 0;
-	int i;
-	for(i=0; i<1000; i++){
-		waitForADCAndRead();
-		squares_total += pow(ADCconv, 2);
-	}
-
-	float rms_total;
-	rms_total = RMSAverage(squares_total, 1000);
-	return rms_total;
-}
 
 float DCVoltage(){
 	double total = 0;
@@ -157,6 +132,19 @@ float DCVoltage(){
 	float mean_total;
 	mean_total = MeanAverage(total, 1000);
 	return mean_total;
+}
+
+float ACVoltage(){
+	double squares_total = 0;
+	int i;
+	for(i=0; i<1000; i++){
+		waitForADCAndRead();
+		squares_total += pow(ADCconv, 2);
+	}
+
+	float rms_total;
+	rms_total = RMSAverage(squares_total, 1000);
+	return rms_total;
 }
 
 void switchMode(void){

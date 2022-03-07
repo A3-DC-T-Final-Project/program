@@ -13,7 +13,6 @@ int main (void){
 	SystemCoreClockUpdate();
 	SysTick_Config(SystemCoreClock/1000);
 	initTimer();
-	initDAC();
 	initADC();
 	initPinSelect();
 	initLEDs();

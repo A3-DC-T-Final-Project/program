@@ -28,7 +28,7 @@ void initButton(void){
 	// Sets MODE as 0 so pin (A0) is an input not an output
 	GPIOA->MODER = GPIOA->MODER & 0xFFFFFFFC;
 
-	/* CONFIGURING PUSH BUTTON AS INTERRUPT */
+	// CONFIGURES PUSH BUTTON AS INTERRUPT:
 	// Enable clock for SYSCFG_EXTICR using the RCC->APB2ENR register
 	RCC->APB2ENR = (RCC->APB2ENR & ~RCC_APB2ENR_SYSCFGEN_Msk) | (0x1 << RCC_APB2ENR_SYSCFGEN_Pos);
 	// SYSCFG_EXTICR should already be enabled for PA0 as it is the reset value
@@ -54,11 +54,6 @@ void EXTI0_IRQHandler(void){
 		
 		switchMode();		
 	}
-}
-
-uint32_t readPushButton(void){
-	// Reads in the GPIOA IDR then isolates the last bit (push button state)
-	return (GPIOA->IDR & (1 << 1) -1);
 }
 
 void LED_Turn_On(int colour){

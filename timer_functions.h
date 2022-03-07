@@ -1,11 +1,11 @@
+#ifndef TIMER_FUNCTIONS_H
+#define TIMER_FUNCTIONS_H
+
 #include "stm32f407xx.h"
 
-#ifndef timer_functions_FILE
-#define timer_functions_FILE
-
+void initTimer(void);
 void SysTick_Handler(void);
 void waitInterval(uint32_t waitTime);
-void initTimer(void);
 
 // Variable used to keep count of counter ticks
 extern uint32_t ourTick;

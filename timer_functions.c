@@ -4,26 +4,6 @@
 
 uint32_t ourTick;
 
-void SysTick_Handler(void) {
-	/* Unsigned integers roll over to 0
-	 * for any operation that would cause
-	 * "overflow" on signed integers.
-	 */
-	ourTick++;
-}
-
-// Waits for some ticks 
-void waitInterval(uint32_t waitTime){
-	uint32_t whenStarted = ourTick;
-	
-	/* Empty assembly instruction so that the
-	 * empty while loop does not get remove at
-	 * compile time due to /optimisation/.
-	 */
-	do{__asm("");}
-	while ((ourTick - whenStarted) <= waitTime);
-}
-
 void initTimer(void){
 	// Initialise ourTick to 0
 	ourTick = 0;
@@ -42,6 +22,26 @@ void initTimer(void){
 	TIM1->SMCR = (TIM1->SMCR & ~TIM_SMCR_ECE_Msk) | (0x1 << TIM_SMCR_ECE_Pos);
 	// Set CEN bit in TIM1_CR1 to enable counter
 	TIM1->CR1 = (TIM1->CR1 & ~TIM_CR1_CEN_Msk) | (0x1 << TIM_CR1_CEN_Pos);	
+}
+
+void SysTick_Handler(void) {
+	/* Unsigned integers roll over to 0
+	 * for any operation that would cause
+	 * "overflow" on signed integers.
+	 */
+	ourTick++;
+}
+
+// Waits for some ticks 
+void waitInterval(uint32_t waitTime){
+	uint32_t whenStarted = ourTick;
+	
+	/* Empty assembly instruction so that the
+	 * empty while loop does not get remove at
+	 * compile time due to /optimisation/.
+	 */
+	do{__asm("");}
+	while ((ourTick - whenStarted) <= waitTime);
 }
 
 uint32_t getTicks(){

@@ -26,8 +26,8 @@
  * SOFTWARE.
  *----------------------------------------------------------------------------*/
 
-#ifndef __PB_LCD_DRIVERS_H
-#define __PB_LCD_DRIVERS_H
+#ifndef PB_LCD_DRIVERS_H
+#define PB_LCD_DRIVERS_H
 
 #include "stm32f407xx.h"
 

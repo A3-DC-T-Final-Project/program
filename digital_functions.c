@@ -2,14 +2,13 @@
 
 #include "digital_functions.h"
 
+// Edge pins used: B(5 7 15) & E(3 4 5 6 7)
 void initDigitalPins(){
 	// Enable clock E&B
 	RCC->AHB1ENR = (RCC->AHB1ENR & 0xFFFFFFFD) | 0x00000002;
 	RCC->AHB1ENR = (RCC->AHB1ENR & 0xFFFFFFDF) | 0x00000020;
 	
 	// Change the MODE (01)
-	// B5 7 15
-	// E3 4 5 6 7
 	GPIOB->MODER = (GPIOB->MODER & 0xBFFFBBFF) | 0x40004400;
 	GPIOE->MODER = (GPIOE->MODER & 0xFFFFAABF) | 0x00005540;
 	
