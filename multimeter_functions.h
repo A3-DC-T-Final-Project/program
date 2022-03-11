@@ -34,5 +34,7 @@ extern int read_mode;
 extern int voltage_range;
 extern float conversion_upper_bound;
 extern float conversion_lower_bound;
+extern float range_max;
+extern float range_min;
 
 #endif

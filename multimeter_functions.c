@@ -21,6 +21,9 @@ int voltage_range;
 // Conversion bounds
 float conversion_upper_bound;
 float conversion_lower_bound;
+// Range bounds
+float range_max;
+float range_min;
 
 void initADC(void){
 	// Initialise ADConv, read_mode variable
@@ -94,6 +97,7 @@ void OutputValue(void){
 			PB_LCD_WriteString("Problem:", 0x8);
 			break;
 	}
+	
 	// Write to second line
 	PB_LCD_GoToXY(0, 1);
 	// Compile time variables
@@ -138,21 +142,21 @@ void OutputValue(void){
 		switch (voltage_range) {
 				// TODO: Do not repeat snprintf calls
 				case V_100M_RANGE:
-					mapped_value = map(total, ADC_MIN, ADC_MAX, -100, 100);
+					mapped_value = map(total, range_min, range_max, -100, 100);
 					// Put the value of the ADC into the value buffer
 					snprintf(value, 13*sizeof(char), "%.3f mV", mapped_value);
 					break;
 				case V_1_RANGE:
-					mapped_value = map(total, ADC_MIN, ADC_MAX, -1, 1);
+					mapped_value = map(total, range_min, range_max, -1, 1);
 					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
 					break;
 				case V_5_RANGE:
-					mapped_value = map(total, ADC_MIN, ADC_MAX, -5, 5);
+					mapped_value = map(total, range_min, range_max, -5, 5);
 					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
 					break;
 				default:
 				case V_10_RANGE:
-					mapped_value = map(total, ADC_MIN, ADC_MAX, -10, 10);
+					mapped_value = map(total, range_min, range_max, -10, 10);
 					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
 					break;
 			}
@@ -171,15 +175,21 @@ void checkIfInRange(float value, bool * conversion) {
 	if((value > conversion_lower_bound) && (value < conversion_upper_bound)) {
 		(*conversion) = false;
 		changeVoltageRange(voltage_range - 1);
+	} else if((value > range_max) && (voltage_range != V_10_RANGE)) {
+		(*conversion) = false;
+		changeVoltageRange(voltage_range + 1);
+	} else if((value < range_min) && (voltage_range != V_10_RANGE)) {
+		(*conversion) = false;
+		changeVoltageRange(voltage_range - 1);
 	} else {
 		(*conversion) = true;
 	}
 	
 	// If the mean is ADC_MAX, use the upper range (max range 10V, so no upper range for 10V)
-	if(((uint32_t) value == ADC_MAX) && (voltage_range != V_10_RANGE)) {
+	/*if((value >= range_max) && (voltage_range != V_10_RANGE)) {
 		(*conversion) = false;
 		changeVoltageRange(voltage_range + 1);
-	}
+	}*/
 }
 
 float ACVoltage(bool * conversion){
@@ -245,29 +255,39 @@ void changeVoltageRange(int range) {
 			setLow(GPIOE, 4);
 			conversion_lower_bound = -1;
 			conversion_upper_bound = -1;
+			range_max = V_100m_MAX;
+			range_min = V_100m_MIN;
 			break;
 		case V_1_RANGE:
 			setHigh(GPIOE, 3);
 			setLow(GPIOE, 4);
 			conversion_lower_bound = V_1_M100mV;
 			conversion_upper_bound = V_1_P100mV;
+			range_max = V_1_MAX;
+			range_min = V_1_MIN;
 			break;
 		case V_5_RANGE:
 			setLow(GPIOE, 3);
 			setHigh(GPIOE, 4);
 			conversion_lower_bound = V_5_M1V;
 			conversion_upper_bound = V_5_P1V;
+			range_max = V_5_MAX;
+			range_min = V_5_MIN;
 			break;
 		case V_10_RANGE:
 			setHigh(GPIOE, 3);
 			setHigh(GPIOE, 4);
 			conversion_lower_bound = V_10_M5V;
 			conversion_upper_bound = V_10_P5V;
+			range_max = V_10_MAX;
+			range_min = V_10_MIN;
 			break;
 		default:
 			voltage_range = V_10_RANGE;
 			conversion_lower_bound = V_10_M5V;
 			conversion_upper_bound = V_10_P5V;
+			range_max = V_10_MAX;
+			range_min = V_10_MIN;
 			setHigh(GPIOE, 3);
 			setHigh(GPIOE, 4);
 			break;
