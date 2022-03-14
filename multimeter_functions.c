@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <math.h>
 
 #include "stm32f407xx.h"
@@ -8,11 +9,21 @@
 #include "multimeter_functions.h"
 #include "digital_functions.h"
 #include "math_functions.h"
+#include "ranges.h"
 
 // Int var for ADC conversions
 uint32_t ADCconv;
 // Int var for read mode
 int read_mode;
+// Int var for voltage range
+int voltage_range;
+
+// Conversion bounds
+float conversion_upper_bound;
+float conversion_lower_bound;
+// Range bounds
+float range_max;
+float range_min;
 
 void initADC(void){
 	// Initialise ADConv, read_mode variable
@@ -36,6 +47,9 @@ void initADC(void){
 	// Enable EOCS for End Of Conversion Selection
 	// Enables overrun detection
 	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_EOCS_Msk) | (0x1 << ADC_CR2_EOCS_Pos);
+	
+	// Default to 10V range on startup
+	changeVoltageRange(V_10_RANGE);
 }
 
 void initPinSelect(void){
@@ -83,23 +97,36 @@ void OutputValue(void){
 			PB_LCD_WriteString("Problem:", 0x8);
 			break;
 	}
+	
 	// Write to second line
 	PB_LCD_GoToXY(0, 1);
 	// Compile time variables
-	float total;
+	float total = (ADC_MAX / 2); // Placeholder value
 	float mapped_value = 0;
 	
+	// Allocate memory and define string var for the LCD value buffer
+	char* value = malloc(13*sizeof(char));
+	
+	// Flag to keep track of correct measuring
+	bool conversion = false;
+	// Flag to keep track of voltage measuring
+	bool isVoltageReading = false;
+
 	// Switch to write output
 	switch(read_mode){
-		case DC_MODE:
-			// Map the value of the ADC to the correct numbers
-		  total = DCVoltage();
-			mapped_value = map(total, 0, 4095, 0, 3);
+		case DC_MODE:	
+			while (!conversion) {
+					// Map the value of the ADC to the correct numbers
+					total = DCVoltage(&conversion);
+				}
+			isVoltageReading = true;
 			break;
 		case AC_MODE:
-			// AC voltage map
-			total = ACVoltage();
-			mapped_value = map(total, 0, 4095, 0, 3);
+			while (!conversion) {
+					// Map the value of the ADC to the correct numbers
+					total = ACVoltage(&conversion);
+				}
+			isVoltageReading = true;
 			break;
 		case I_MODE:
 			// Current map
@@ -110,31 +137,59 @@ void OutputValue(void){
 		default:
 			break;
 	}
+	
+	if (isVoltageReading) {
+		switch (voltage_range) {
+				// TODO: Do not repeat snprintf calls
+				case V_100M_RANGE:
+					mapped_value = map(total, range_min, range_max, -100, 100);
+					// Put the value of the ADC into the value buffer
+					snprintf(value, 13*sizeof(char), "%.3f mV", mapped_value);
+					break;
+				case V_1_RANGE:
+					mapped_value = map(total, range_min, range_max, -1, 1);
+					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
+					break;
+				case V_5_RANGE:
+					mapped_value = map(total, range_min, range_max, -5, 5);
+					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
+					break;
+				default:
+				case V_10_RANGE:
+					mapped_value = map(total, range_min, range_max, -10, 10);
+					snprintf(value, 13*sizeof(char), "%.3f V", mapped_value);
+					break;
+			}
+	}
 
-	// Allocate memory and define string var for the LCD value buffer
-	char* value = malloc(13*sizeof(char));
-	// Put the value of the ADC into the value buffer
-	snprintf(value, 13*sizeof(char), "%.3f", (double)mapped_value);
 	// Write value buffer to LCD
-	PB_LCD_WriteString(value, 0xF);
+	PB_LCD_WriteString(value, 0xC);
+
 	// Free the allocated memory
 	free(value);
 } 
 
-float DCVoltage(){
-	double total = 0;
-	int i;
-	for(i=0; i<1000; i++){
-		waitForADCAndRead();
-		total += ADCconv;
+void checkIfInRange(float value, bool * conversion) {
+	if((value > conversion_lower_bound) && (value < conversion_upper_bound)) {
+		// If the mean is between the bounds of another range
+		// switch to said range;
+		(*conversion) = false;
+		changeVoltageRange(voltage_range - 1);
+	} else if((value > range_max) && (voltage_range != V_10_RANGE)) {
+		// If value overshoots, switch to upper range
+		(*conversion) = false;
+		changeVoltageRange(voltage_range + 1);
+	} else if((value < range_min) && (voltage_range != V_10_RANGE)) {
+		// If value undershoots, switch to lower range
+		(*conversion) = false;
+		changeVoltageRange(voltage_range - 1);
+	} else {
+		// Successful conversion
+		(*conversion) = true;
 	}
-
-	float mean_total;
-	mean_total = MeanAverage(total, 1000);
-	return mean_total;
 }
 
-float ACVoltage(){
+float ACVoltage(bool * conversion){
 	double squares_total = 0;
 	int i;
 	for(i=0; i<1000; i++){
@@ -144,7 +199,26 @@ float ACVoltage(){
 
 	float rms_total;
 	rms_total = RMSAverage(squares_total, 1000);
+
+	checkIfInRange(rms_total, conversion);
+
 	return rms_total;
+}
+
+float DCVoltage(bool * conversion){
+	double total = 0;
+	int i;
+	for(i=0; i<1000; i++){
+		waitForADCAndRead();
+		total += ADCconv;
+	}
+
+	float mean_total;
+	mean_total = MeanAverage(total, 1000);
+	
+	checkIfInRange(mean_total, conversion);
+	
+	return mean_total;
 }
 
 void switchMode(void){
@@ -166,6 +240,53 @@ void switchMode(void){
 			setHigh(GPIOB, 5);
 			break;
 		default:
+			break;
+	}
+}
+
+void changeVoltageRange(int range) {
+	voltage_range = range;
+	switch (range) {
+		case V_100M_RANGE:
+			setLow(GPIOE, 3);
+			setLow(GPIOE, 4);
+			conversion_lower_bound = -1;
+			conversion_upper_bound = -1;
+			range_max = V_100m_MAX;
+			range_min = V_100m_MIN;
+			break;
+		case V_1_RANGE:
+			setHigh(GPIOE, 3);
+			setLow(GPIOE, 4);
+			conversion_lower_bound = V_1_M100mV;
+			conversion_upper_bound = V_1_P100mV;
+			range_max = V_1_MAX;
+			range_min = V_1_MIN;
+			break;
+		case V_5_RANGE:
+			setLow(GPIOE, 3);
+			setHigh(GPIOE, 4);
+			conversion_lower_bound = V_5_M1V;
+			conversion_upper_bound = V_5_P1V;
+			range_max = V_5_MAX;
+			range_min = V_5_MIN;
+			break;
+		case V_10_RANGE:
+			setHigh(GPIOE, 3);
+			setHigh(GPIOE, 4);
+			conversion_lower_bound = V_10_M5V;
+			conversion_upper_bound = V_10_P5V;
+			range_max = V_10_MAX;
+			range_min = V_10_MIN;
+			break;
+		default:
+			voltage_range = V_10_RANGE;
+			conversion_lower_bound = V_10_M5V;
+			conversion_upper_bound = V_10_P5V;
+			range_max = V_10_MAX;
+			range_min = V_10_MIN;
+			setHigh(GPIOE, 3);
+			setHigh(GPIOE, 4);
 			break;
 	}
 }

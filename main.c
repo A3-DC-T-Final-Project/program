@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "stm32f407xx.h"
 #include "PB_LCD_Drivers.h"
@@ -11,28 +12,23 @@
 int main (void){
 	// Initialisation functions
 	SystemCoreClockUpdate();
-	SysTick_Config(SystemCoreClock/1000);
+	SysTick_Config(SystemCoreClock/1000);	
+	
 	initTimer();
-	initADC();
+	
 	initPinSelect();
 	initLEDs();
 	initButton();
 	PB_LCD_Init();
 	initDigitalPins();
+	initADC();
 	
 	// Initial conditions
 	PB_LCD_Clear();
 	
-	// Later add this into while loop
-	waitForADCAndRead();
-	
 	// Output value to LCD
 	while(1){
 		OutputValue();
-		
-		/*if (readPushButton()){
-			switchMode();
-		}*/
 		
 		waitInterval(DEBOUNCE_TIME);
 	}
