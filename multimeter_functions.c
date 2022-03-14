@@ -170,26 +170,23 @@ void OutputValue(void){
 } 
 
 void checkIfInRange(float value, bool * conversion) {
-	// If the mean is between the bounds of another range
-	// switch to said range;
 	if((value > conversion_lower_bound) && (value < conversion_upper_bound)) {
+		// If the mean is between the bounds of another range
+		// switch to said range;
 		(*conversion) = false;
 		changeVoltageRange(voltage_range - 1);
 	} else if((value > range_max) && (voltage_range != V_10_RANGE)) {
+		// If value overshoots, switch to upper range
 		(*conversion) = false;
 		changeVoltageRange(voltage_range + 1);
 	} else if((value < range_min) && (voltage_range != V_10_RANGE)) {
+		// If value undershoots, switch to lower range
 		(*conversion) = false;
 		changeVoltageRange(voltage_range - 1);
 	} else {
+		// Successful conversion
 		(*conversion) = true;
 	}
-	
-	// If the mean is ADC_MAX, use the upper range (max range 10V, so no upper range for 10V)
-	/*if((value >= range_max) && (voltage_range != V_10_RANGE)) {
-		(*conversion) = false;
-		changeVoltageRange(voltage_range + 1);
-	}*/
 }
 
 float ACVoltage(bool * conversion){

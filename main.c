@@ -23,23 +23,9 @@ int main (void){
 	PB_LCD_Init();
 	initDigitalPins();
 	initADC();
-	//setLow(GPIOE, 3);
-	//setLow(GPIOE, 4);
 	
 	// Initial conditions
 	PB_LCD_Clear();
-	
-	//waitInterval(500);
-	
-	// Later add this into while loop
-	/*waitForADCAndRead();
-	
-	char * message = malloc(13*sizeof(char));
-	
-	snprintf(message, 13*sizeof(char), "%u", ADCconv);
-	
-	PB_LCD_GoToXY(0, 0);
-	PB_LCD_WriteString(message, 0xC);*/
 	
 	// Output value to LCD
 	while(1){
