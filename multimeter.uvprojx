@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>STM32F407VGTx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.15.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.16.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00020000) IRAM2(0x10000000,0x00010000) IROM(0x08000000,0x00100000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -134,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -357,7 +357,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.16.0\Drivers\STM32F4xx_HAL_Driver\Inc</IncludePath>
             </VariousControls>
           </Aads>
           <LDads>
@@ -448,6 +448,16 @@
               <FileType>5</FileType>
               <FilePath>.\ranges.h</FilePath>
             </File>
+            <File>
+              <FileName>random_functions.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\random_functions.c</FilePath>
+            </File>
+            <File>
+              <FileName>random_functions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\random_functions.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -527,6 +537,12 @@
           <targetInfo name="Lab Arm Kit"/>
         </targetInfos>
       </component>
+      <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="RNG" Cvendor="Keil" Cversion="1.7.13" condition="STM32F410_40_41_412_42_43_44_46_47x_4x3 HAL">
+        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.16.0"/>
+        <targetInfos>
+          <targetInfo name="Lab Arm Kit"/>
+        </targetInfos>
+      </component>
       <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.3" condition="STM32F4 CMSIS">
         <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.16.0"/>
         <targetInfos>
@@ -537,8 +553,8 @@
     <files>
       <file attr="config" category="header" name="CMSIS\Driver\Config\RTE_Device.h" version="2.4.5">
         <instance index="0">RTE\Device\STM32F407VGTx\RTE_Device.h</instance>
-        <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.7.9" condition="STM32F4 Framework Classic"/>
-        <package name="STM32F4xx_DFP" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.15.0"/>
+        <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.7.13" condition="STM32F4 Framework Classic"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.16.0"/>
         <targetInfos>
           <targetInfo name="Lab Arm Kit"/>
         </targetInfos>
@@ -546,15 +562,15 @@
       <file attr="config" category="source" condition="STM32F407xx_ARMCC" name="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s" version="2.6.2">
         <instance index="0">RTE\Device\STM32F407VGTx\startup_stm32f407xx.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.3" condition="STM32F4 CMSIS"/>
-        <package name="STM32F4xx_DFP" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.15.0"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.16.0"/>
         <targetInfos>
           <targetInfo name="Lab Arm Kit"/>
         </targetInfos>
       </file>
       <file attr="config" category="header" name="MDK\Templates\Inc\stm32f4xx_hal_conf.h" version="1.7.13">
         <instance index="0">RTE\Device\STM32F407VGTx\stm32f4xx_hal_conf.h</instance>
-        <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.7.9" condition="STM32F4 Framework Classic"/>
-        <package name="STM32F4xx_DFP" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.15.0"/>
+        <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.7.13" condition="STM32F4 Framework Classic"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.16.0"/>
         <targetInfos>
           <targetInfo name="Lab Arm Kit"/>
         </targetInfos>
@@ -562,7 +578,7 @@
       <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c" version="2.6.3">
         <instance index="0">RTE\Device\STM32F407VGTx\system_stm32f4xx.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.3" condition="STM32F4 CMSIS"/>
-        <package name="STM32F4xx_DFP" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.15.0"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.7.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.16.0"/>
         <targetInfos>
           <targetInfo name="Lab Arm Kit"/>
         </targetInfos>

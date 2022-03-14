@@ -8,6 +8,7 @@
 #include "multimeter_functions.h"
 #include "timer_functions.h"
 #include "digital_functions.h"
+#include "random_functions.h"
 
 int main (void){
 	// Initialisation functions
@@ -22,6 +23,7 @@ int main (void){
 	PB_LCD_Init();
 	initDigitalPins();
 	initADC();
+	initRandom();
 	
 	// Initial conditions
 	PB_LCD_Clear();
