@@ -15,7 +15,6 @@ int main (void){
 	SysTick_Config(SystemCoreClock/1000);	
 	
 	initTimer();
-	initDAC();
 	
 	initPinSelect();
 	initLEDs();
