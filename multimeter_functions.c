@@ -17,6 +17,8 @@ uint32_t ADCconv;
 int read_mode;
 // Int var for voltage range
 int voltage_range;
+// Int var for current range
+int current_range;
 
 // Conversion bounds
 float conversion_upper_bound;
@@ -50,6 +52,8 @@ void initADC(void){
 	
 	// Default to 10V range on startup
 	changeVoltageRange(V_10_RANGE);
+	// Default to 100mA range on startup
+	changeCurrentRange(I_100M_RANGE);
 }
 
 void initPinSelect(void){
@@ -129,7 +133,25 @@ void OutputValue(void){
 			isVoltageReading = true;
 			break;
 		case I_MODE:
-			// Current map
+			while (!conversion) {
+				total = Current(&conversion);
+			}
+			switch (current_range) {
+				case I_10M_RANGE:
+					mapped_value = map(total, range_min, range_max, -10, 10);
+					break;
+				case I_25M_RANGE:
+					mapped_value = map(total, range_min, range_max, -25, 25);
+					break;
+				case I_50M_RANGE:
+					mapped_value = map(total, range_min, range_max, -50, 50);
+					break;
+				default:
+				case I_100M_RANGE:
+					mapped_value = map(total, range_min, range_max, -100, 100);
+					break;
+			}
+			snprintf(value, 13*sizeof(char), "%.3f mA", mapped_value);
 			break;
 		case R_MODE:
 			// Resistance map
@@ -189,6 +211,26 @@ void checkIfInRange(float value, bool * conversion) {
 	}
 }
 
+void checkIfInRangeCurrent(float value, bool * conversion) {
+	if((value > conversion_lower_bound) && (value < conversion_upper_bound)) {
+		// If the mean is between the bounds of another range
+		// switch to said range;
+		(*conversion) = false;
+		changeVoltageRange(voltage_range - 1);
+	} else if((value > range_max) && (current_range != I_100M_RANGE)) {
+		// If value overshoots, switch to upper range
+		(*conversion) = false;
+		changeVoltageRange(voltage_range + 1);
+	} else if((value < range_min) && (current_range != I_100M_RANGE)) {
+		// If value undershoots, switch to lower range
+		(*conversion) = false;
+		changeVoltageRange(voltage_range - 1);
+	} else {
+		// Successful conversion
+		(*conversion) = true;
+	}
+}
+
 float ACVoltage(bool * conversion){
 	double squares_total = 0;
 	int i;
@@ -221,6 +263,22 @@ float DCVoltage(bool * conversion){
 	return mean_total;
 }
 
+float Current(bool * conversion) {
+	double total = 0;
+	int i;
+	for(i=0; i<1000; i++){
+		waitForADCAndRead();
+		total += ADCconv;
+	}
+
+	float mean_total;
+	mean_total = MeanAverage(total, 1000);
+	
+	checkIfInRangeCurrent(mean_total, conversion);
+	//(*conversion) = true;
+	return mean_total;
+}
+
 void switchMode(void){
 	read_mode++;
 	if(read_mode == (R_MODE + 1)){
@@ -234,6 +292,7 @@ void switchMode(void){
 		case R_MODE:
 		case AC_MODE:
 		case DC_MODE:
+			changeVoltageRange(V_10_RANGE);
 			setLow(GPIOB, 5);
 			break;
 		case I_MODE:
@@ -287,6 +346,53 @@ void changeVoltageRange(int range) {
 			range_min = V_10_MIN;
 			setHigh(GPIOE, 3);
 			setHigh(GPIOE, 4);
+			break;
+	}
+}
+
+void changeCurrentRange(int range) {
+	current_range = range;
+	switch (range) {
+		case I_10M_RANGE:
+			setLow(GPIOE, 5);
+			setLow(GPIOE, 6);
+			conversion_lower_bound = -1;
+			conversion_upper_bound = -1;
+			range_max = I_10M_MAX;
+			range_min = I_10M_MIN;
+			break;
+		case I_25M_RANGE:
+			setHigh(GPIOE, 5);
+			setLow(GPIOE, 6);
+			conversion_lower_bound = I_25M_M10M;
+			conversion_upper_bound = I_25M_P10M;
+			range_max = I_25M_MAX;
+			range_min = I_25M_MIN;
+			break;
+		case I_50M_RANGE:
+			setLow(GPIOE, 5);
+			setHigh(GPIOE, 6);
+			conversion_lower_bound = I_50M_M25M;
+			conversion_upper_bound = I_50M_P25M;
+			range_max = I_50M_MAX;
+			range_min = I_50M_MIN;
+			break;
+		case I_100M_RANGE:
+			setHigh(GPIOE, 5);
+			setHigh(GPIOE, 6);
+			conversion_lower_bound = I_100M_M50M;
+			conversion_upper_bound = I_100M_P50M;
+			range_max = I_100M_MAX;
+			range_min = I_100M_MIN;
+			break;
+		default:
+			current_range = I_100M_RANGE;
+			setHigh(GPIOE, 5);
+			setHigh(GPIOE, 6);
+			conversion_lower_bound = I_100M_M50M;
+			conversion_upper_bound = I_100M_P50M;
+			range_max = I_100M_MAX;
+			range_min = I_100M_MIN;
 			break;
 	}
 }

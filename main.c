@@ -23,8 +23,21 @@ int main (void){
 	initDigitalPins();
 	initADC();
 	
+	//setLow(GPIOE, 5);
+	//setLow(GPIOE, 6);
+	
 	// Initial conditions
 	PB_LCD_Clear();
+	
+	/*waitForADCAndRead();
+	
+	char * message = malloc(13*sizeof(char));
+	
+	snprintf(message, 13*sizeof(char), "%u", ADCconv);
+	
+	PB_LCD_GoToXY(0, 0);
+	PB_LCD_WriteString(message, 0xC);
+	free(message);*/
 	
 	// Output value to LCD
 	while(1){
