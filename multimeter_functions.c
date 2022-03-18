@@ -38,9 +38,17 @@ void initADC(void){
 	GPIOC->MODER = (GPIOC->MODER & ~GPIO_MODER_MODER4_Msk) | (0x3 << GPIO_MODER_MODER4_Pos);
 	// Enable the peripheral clock using RCC APB2 register
 	RCC->APB2ENR = (RCC->APB2ENR & ~RCC_APB2ENR_ADC1EN_Msk) | (0x1 << RCC_APB2ENR_ADC1EN_Pos);
-	// Configure channel 14 (E), 1 conversion(SQ1)
+	// Configure channel 14 (E), 1st conversion(SQ1)
 	// SQ1 is bits 4:0 so no shift
 	ADC1->SQR3 = (ADC1->SQR3 & ~ADC_SQR3_SQ1) | 0xE;
+	
+	
+	// Configure channel 17 (0x11), 2nd conversion (SQ2)
+	ADC1->SQR3 = (ADC1->SQR3 & ~ADC_SQR3_SQ2) | (0x11 << ADC_SQR3_SQ2_Pos);
+	
+	// Enable TSVREFE bit 23 for Vrefint
+	ADC123_COMMON->CCR = (ADC->CCR & ~ADC_CCR_TSVREFE_Msk) | (0x1 << ADC_CCR_TSVREFE_Pos); 
+		
 	// Turn converter on (ADON)
 	// Since ADON is bit 0 there is no shift
 	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_ADON_Msk) | 0x1;
@@ -49,6 +57,9 @@ void initADC(void){
 	// Enable EOCS for End Of Conversion Selection
 	// Enables overrun detection
 	ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_EOCS_Msk) | (0x1 << ADC_CR2_EOCS_Pos);
+	
+	ADC1->CR1 = (ADC1->CR1 & ~ADC_CR1_DISCNUM_Msk) | (0x2 << ADC_CR1_DISCNUM_Pos);
+	
 	
 	// Default to 10V range on startup
 	changeVoltageRange(V_10_RANGE);
@@ -71,8 +82,16 @@ void waitForADCAndRead(void){
 		__asm("");
 	} while(!((ADC1->SR >> 1) & 1));
 	
-	// Store the value in the ADCs Data Register to a local var
 	ADCconv = ADC1->DR;
+	// Starts a conversion for regular channels
+	//ADC1->CR2 = (ADC1->CR2 & ~ADC_CR2_SWSTART_Msk) | (0x1 << ADC_CR2_SWSTART_Pos);
+	// Waits for the EOC flag to be triggered
+	do {
+		__asm("");
+	} while(!((ADC1->SR >> 1) & 1));
+	
+	// Store the value in the ADCs Data Register to a local var
+	
 }
 
 void OutputValue(void){

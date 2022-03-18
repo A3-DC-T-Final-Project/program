@@ -29,7 +29,7 @@ int main (void){
 	// Initial conditions
 	PB_LCD_Clear();
 	
-	/*waitForADCAndRead();
+	waitForADCAndRead();
 	
 	char * message = malloc(13*sizeof(char));
 	
@@ -37,12 +37,12 @@ int main (void){
 	
 	PB_LCD_GoToXY(0, 0);
 	PB_LCD_WriteString(message, 0xC);
-	free(message);*/
+	free(message);
 	
 	// Output value to LCD
-	while(1){
+	/*while(1){
 		OutputValue();
 		
 		waitInterval(DEBOUNCE_TIME);
-	}
+	}*/
 }
